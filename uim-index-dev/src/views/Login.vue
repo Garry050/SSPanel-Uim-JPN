@@ -1,18 +1,18 @@
 <template>
   <div class="page-auth pure-g pure-u-1 pure-u-sm-20-24 wrap">
     <div class="title-back flex align-center">LOGIN</div>
-    <h1>登录</h1>
+    <h1>ログイン</h1>
     <div class="pure-u-1 basis-max" :class="[ isTgEnabled ? 'pure-u-sm-11-24' : 'pure-u-sm-1-2' ]">
       <div class="input-control flex wrap">
-        <label for="Email">邮箱</label>
+        <label for="Email">メールアドレス</label>
         <input v-model="email" type="text" name="Email">
       </div>
       <div class="input-control flex wrap">
-        <label for="Password">密码</label>
+        <label for="Password">・パスワード</label>
         <input v-model="passwd" type="password" name="Password">
       </div>
       <div class="input-control flex wrap">
-        <label for="stepcode">两步验证（未设置请忽略）</label>
+        <label for="stepcode">二段階認証コード（設定していない場合は空にしてください）</label>
         <input v-model="stepcode" type="stepcode" name="stepcode">
       </div>
       <div class="input-control flex wrap">
@@ -34,15 +34,15 @@
         id="login"
         type="submit"
         :disabled="isDisabled"
-      >确认登录</button>
+      >ログイン</button>
       <div class="input-control flex">
         <div class="input-inner flex no-wrap space-between">
           <uim-checkbox v-model="remember_me">
             <template #content>
-              <span>记住我</span>
+              <span>ログインを保持する</span>
             </template>
           </uim-checkbox>
-          <router-link class="link" to="/password/reset">忘记密码？</router-link>
+          <router-link class="link" to="/password/reset">パスワードを忘れました</router-link>
         </div>
       </div>
     </div>
@@ -138,7 +138,7 @@ export default {
               ajaxCon.geetest_validate = this.validate.geetest_validate;
               ajaxCon.geetest_seccode = this.validate.geetest_seccode;
             } else {
-              callConfig.msg += "请滑动验证码来完成验证。";
+              callConfig.msg += "確認コードをスワイプして確認を完了してください";
             }
             break;
         }
@@ -146,7 +146,7 @@ export default {
 
       _post("/auth/login", JSON.stringify(ajaxCon), "include").then(r => {
         if (r.ret === 1) {
-          callConfig.msg += "登录成功Kira~";
+          callConfig.msg += "ログインしました";
           callConfig.icon += "check-circle";
           this.callMsgr(callConfig);
           window.setTimeout(() => {
@@ -154,7 +154,7 @@ export default {
             this.$router.replace("/user/panel");
           }, this.globalConfig.jumpDelay);
         } else {
-          callConfig.msg = `登录失败Boommm,${r.msg}`;
+          callConfig.msg = `ログインに失敗しました,${r.msg}`;
           callConfig.icon += "times-circle";
           this.callMsgr(callConfig);
           window.setTimeout(() => {
@@ -213,7 +213,7 @@ export default {
               "include"
             ).then(r => {
               if (r.ret) {
-                callConfig.msg += "登录成功Kira~";
+                callConfig.msg += "ログインしました";
                 callConfig.icon += "check-circle";
                 this.callMsgr(callConfig);
                 window.setTimeout(() => {

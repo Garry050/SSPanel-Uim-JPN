@@ -16,7 +16,7 @@
         <div class="pure-u-1 pure-u-xl-6-24 pure-g usrcenter-left">
           <div class="card">
             <div class="flex space-between align-center">
-              <div class="card-title">节点详情</div>
+              <div class="card-title">サーバーの詳細</div>
             </div>
             <div class="card-body">
               <div>节点地址：{{currentNode.server}}</div>
@@ -26,14 +26,14 @@
         <div class="pure-u-1 pure-u-xl-17-24">
           <div class="card margin-nobottom-sm">
             <div class="flex space-between align-center">
-              <div class="card-title">节点列表</div>
+              <div class="card-title">サーバーリスト</div>
               <div class="card-title-right">
                 <uim-dropdown>
                   <template #dpbtn-content>
                     <transition name="fade" mode="out-in">
                       <div
                         :key="currentNodeClass"
-                      >{{currentNodeClass===0 ? '普通节点' : "VIP " + currentNodeClass}}</div>
+                      >{{currentNodeClass===0 ? '一般サーバー' : "VIP " + currentNodeClass}}</div>
                     </transition>
                   </template>
                   <template #dp-menu>
@@ -83,7 +83,7 @@ export default {
       let firstClass = this.nodeList[0].class;
       if (firstClass === 0) {
         result.push({
-          name: "普通节点",
+          name: "一般サーバー",
           class: 0
         });
       } else {

@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>您的访问方式不正确 - {$config["appName"]} </title>
+    <title>メソッドが許可されませんでした - {$config["appName"]} </title>
     <meta name="keywords" content=""/>
     <meta name="description" content=""/>
     <meta charset="utf-8"/>
@@ -25,13 +25,13 @@
         </div>
         <div class="content">
             <div class="inner">
-                <h1>405 错误</h1>
-                <p>您的访问方式不正确。</p>
+                <h1>405 METHOD NOT ALLOWED</h1>
+                <p>メソッドが許可されませんでした</p>
             </div>
         </div>
         <nav>
             <ul>
-                <li><a href="./#">返回首页</a></li>
+                <li><a href="./#">トップに戻る</a></li>
             </ul>
         </nav>
     </header>

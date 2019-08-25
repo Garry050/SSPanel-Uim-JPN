@@ -1,44 +1,44 @@
 <template>
   <div class="page-auth pure-g pure-u-1 pure-u-sm-20-24">
     <div class="title-back flex align-center">REGISTER</div>
-    <h1>账号注册</h1>
+    <h1>新規登録</h1>
     <div class="flex space-around reg">
       <div class="input-control flex wrap">
-        <label for="usrname">昵称</label>
+        <label for="usrname">ユーザー名</label>
         <input v-model="usrname" type="text" name="usrname">
       </div>
       <div class="input-control flex wrap">
-        <label for="email">邮箱(唯一凭证请认真对待)</label>
+        <label for="email">メールアドレス</label>
         <input v-model="email" type="text" name="email">
       </div>
       <div class="input-control flex wrap">
-        <label for="password">密码</label>
+        <label for="password">パスワード</label>
         <input v-model="passwd" type="password" name="password">
       </div>
       <div class="input-control flex wrap">
-        <label for="repasswd">重复密码</label>
+        <label for="repasswd">パスワード確認</label>
         <input v-model="repasswd" type="password" name="repasswd">
       </div>
       <div class="input-control flex wrap">
-        <label for="imtype">选择您的联络方式</label>
+        <label for="imtype">連絡方法を選択してください</label>
         <select v-model="imtype" name="imtype" id="imtype">
-          <option value="1">微信</option>
+          <option value="1">WeChat</option>
           <option value="2">QQ</option>
           <option value="3">Facebook</option>
           <option value="4">Telegram</option>
         </select>
       </div>
       <div class="input-control flex wrap">
-        <label for="contect">联络方式账号</label>
+        <label for="contect">連絡先アカウント</label>
         <input v-model="contect" type="text" name="contect">
       </div>
       <div v-if="globalConfig.registMode === 'invite'" class="input-control flex">
-        <label for="code">邀请码(必填)</label>
+        <label for="code">招待コード(必須)</label>
         <input v-model="code" type="text" name="code">
       </div>
       <div v-if="globalConfig.isEmailVeryify === 'true'" class="input-control flex twin">
         <div class="input-control-inner flex">
-          <label for="email_code">邮箱验证码</label>
+          <label for="email_code">検証コード</label>
           <input v-model="email_code" type="text" name="email_code">
         </div>
 
@@ -64,7 +64,7 @@
       id="register"
       type="submit"
       :disabled="isDisabled"
-    >确认注册</button>
+    >登録する</button>
   </div>
 </template>
 
@@ -89,7 +89,7 @@ export default {
       imtype: '',
       email_code: '',
       isDisabled: false,
-      vmText: '获取邮箱验证码',
+      vmText: '確認コードを送信',
       isVmDisabled: false
     }
   },
@@ -135,7 +135,7 @@ export default {
               ajaxCon.geetest_validate = this.validate.geetest_validate
               ajaxCon.geetest_seccode = this.validate.geetest_seccode
             } else {
-              callConfig.msg += '请滑动验证码来完成验证。'
+              callConfig.msg += '確認コードをスワイプして確認を完了してください'
             }
             break
         }
@@ -143,14 +143,14 @@ export default {
 
       _post('/auth/register', JSON.stringify(ajaxCon), 'include').then(r => {
         if (r.ret === 1) {
-          callConfig.msg = '注册成功meow~'
+          callConfig.msg = '登録完了しました'
           callConfig.icon = 'check-circle'
           this.callMsgr(callConfig)
           window.setTimeout(() => {
             this.$router.replace('/auth/login')
           }, this.globalConfig.jumpDelay)
         } else {
-          callConfig.msg = `WTF……注册失败,${r.msg}`
+          callConfig.msg = `登録に失敗しました,${r.msg}`
           callConfig.icon += 'times-circle'
           this.callMsgr(callConfig)
           window.setTimeout(() => {
@@ -194,11 +194,11 @@ export default {
     time (time) {
       if (time === 0) {
         this.isVmDisabled = false
-        this.vmText = '获取验证码'
+        this.vmText = '確認コードを送信'
         time = 60
       } else {
         this.isVmDisabled = true
-        this.vmText = '重新发送(' + time + ')'
+        this.vmText = '再度送信する(' + time + ')'
         time = time - 1
         setTimeout(() => {
           this.time(time)
@@ -216,14 +216,14 @@ export default {
       _post('auth/send', JSON.stringify(ajaxCon), 'omit').then(r => {
         if (r.ret) {
           let callConfig = {
-            msg: 'biu~邮件发送成功',
+            msg: '入力したメールアドレスへ確認コードを送信しました',
             icon: 'check-circle',
             time: 1000
           }
           this.callMsgr(callConfig)
         } else {
           let callConfig = {
-            msg: 'emm……邮件发送失败',
+            msg: '確認コードの送信に失敗しました',
             icon: 'times-circle',
             time: 1000
           }

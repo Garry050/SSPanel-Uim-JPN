@@ -2,13 +2,13 @@
   <div class="page-pw pure-u-1 pure-g flex align-center space-around wrap">
     <div class="title-back flex align-center">PASSWORD</div>
     <div class="pure-u-1 pure-u-sm-10-24 flex space-around wrap basis-max">
-      <h1>密码重置</h1>
+      <h1>パスワード再設定</h1>
       <div class="input-control flex wrap">
         <label for="Email" class="flex space-between align-center">
-          <span>邮箱</span>
+          <span>メールアドレス</span>
           <span>
             <router-link class="button-index" to="/auth/login">
-              <font-awesome-icon icon="share" />&nbsp;返回登录页
+              <font-awesome-icon icon="share" />&nbsp;トップに戻る
             </router-link>
           </span>
         </label>
@@ -21,7 +21,7 @@
         id="reset"
         type="submit"
         :disabled="isDisabled"
-      >重置密码</button>
+      >パスワード再設定</button>
     </div>
   </div>
 </template>
@@ -54,14 +54,14 @@ export default {
         'omit'
       ).then(r => {
         if (r.ret === 1) {
-          callConfig.msg += '邮件发送成功kira~'
+          callConfig.msg += 'パスワード再設定用リンクを送信しました'
           callConfig.icon += 'check-circle'
           this.callMsgr(callConfig)
           window.setTimeout(() => {
             this.$router.push('/auth/login')
           }, this.globalConfig.jumpDelay)
         } else {
-          callConfig.msg += 'WTF……邮件发送失败，请检查邮箱地址'
+          callConfig.msg += 'パスワード再設定用リンクの送信に失敗しました。メールアドレスが正しいか確認してください'
           callConfig.icon += 'times-circle'
           this.callMsgr(callConfig)
           window.setTimeout(() => {

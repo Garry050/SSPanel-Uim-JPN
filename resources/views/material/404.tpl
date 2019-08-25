@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>页面无法找到哦 - {$config["appName"]} </title>
+    <title>ページが見つかりません - {$config["appName"]} </title>
     <meta name="keywords" content=""/>
     <meta name="description" content=""/>
     <meta charset="utf-8"/>
@@ -24,13 +24,13 @@
         </div>
         <div class="content">
             <div class="inner">
-                <h1>404 错误</h1>
-                <p>您的页面查找不到咯</p>
+                <h1>404 NOT FOUND</h1>
+                <p>ページが見つかりませんでした</p>
             </div>
         </div>
         <nav>
             <ul>
-                <li><a href="./#">返回首页</a></li>
+                <li><a href="./#">トップに戻る</a></li>
             </ul>
         </nav>
     </header>

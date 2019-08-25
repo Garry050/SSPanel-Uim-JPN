@@ -7,7 +7,7 @@
             <div class="modal-footer">
                 <p class="text-right">
                     <button class="btn btn-flat btn-brand-accent waves-attach" data-dismiss="modal" type="button"
-                            id="result_ok">知道了
+                            id="result_ok">OK
                     </button>
                 </p>
             </div>

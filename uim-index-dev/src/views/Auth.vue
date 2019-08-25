@@ -31,7 +31,7 @@ export default {
         login: {
           id: "R_AUTH_0",
           href: "/auth/login",
-          content: "登录",
+          content: "ログイン",
           icon: "sign-in-alt",
           iconTransform: "shrink-6",
           isActive: false
@@ -39,7 +39,7 @@ export default {
         register: {
           id: "R_AUTH_1",
           href: "/auth/register",
-          content: "注册",
+          content: "新規登録",
           icon: "user-plus",
           iconTransform: "shrink-7 left-1",
           isActive: false
@@ -47,7 +47,7 @@ export default {
         reset: {
           id: "R_PW_0",
           href: "/password/reset",
-          content: "密码重置",
+          content: "パスワード再設定",
           icon: "unlock-alt",
           iconTransform: "shrink-6",
           isActive: false

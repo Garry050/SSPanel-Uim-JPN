@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="zh-cn">
+<html lang="ja-jp">
 
 <head>
     <meta charset="UTF-8">
@@ -47,23 +47,23 @@
             </a>
             <ul class="dropdown-menu dropdown-menu-right">
                 <li>
-                    <a class="padding-right-lg waves-attach" href="/user/"><span class="icon icon-lg margin-right">account_box</span>用户中心</a>
+                    <a class="padding-right-lg waves-attach" href="/user/"><span class="icon icon-lg margin-right">account_box</span>アカウント設定</a>
                 </li>
                 <li>
-                    <a class="padding-right-lg waves-attach" href="/user/logout"><span class="icon icon-lg margin-right">exit_to_app</span>登出</a>
+                    <a class="padding-right-lg waves-attach" href="/user/logout"><span class="icon icon-lg margin-right">exit_to_app</span>ログアウト</a>
                 </li>
             </ul>
             {else}
-                <span class="access-hide">未登录</span>
+                <span class="access-hide">未ログイン</span>
                 <span class="icon icon-cd margin-right">account_circle</span>
                 <!--<span class="avatar avatar-sm"><img src="/theme/material/images/users/avatar-001.jpg"></span> -->
             </a>
             <ul class="dropdown-menu dropdown-menu-right">
                 <li>
-                    <a class="padding-right-lg waves-attach" href="/auth/login"><span class="icon icon-lg margin-right">vpn_key</span>登录</a>
+                    <a class="padding-right-lg waves-attach" href="/auth/login"><span class="icon icon-lg margin-right">vpn_key</span>ログイン</a>
                 </li>
                 <li>
-                    <a class="padding-right-lg waves-attach" href="/auth/register"><span class="icon icon-lg margin-right">person_add</span>注册</a>
+                    <a class="padding-right-lg waves-attach" href="/auth/register"><span class="icon icon-lg margin-right">person_add</span>新規登録</a>
                 </li>
             </ul>
             {/if}
@@ -74,15 +74,15 @@
 <nav aria-hidden="true" class="menu menu-left nav-drawer nav-drawer-md" id="ui_menu" tabindex="-1">
     <div class="menu-scroll">
         <div class="menu-content">
-            <a class="menu-logo" href="/"><i class="icon icon-lg">language</i>&nbsp;点击返回官网</a>
+            <a class="menu-logo" href="/"><i class="icon icon-lg">language</i>&nbsp;トップに戻る</a>
             <ul class="nav">
                 {if $user->isLogin}
-                <li><a href="/user"><i class="icon icon-lg">person</i>&nbsp;用户中心</a></li>
-                <li><a href="/user/logout"><i class="icon icon-lg">call_missed_outgoing</i>&nbsp;退出</a></li>
+                <li><a href="/user"><i class="icon icon-lg">person</i>&nbsp;アカウント設定</a></li>
+                <li><a href="/user/logout"><i class="icon icon-lg">call_missed_outgoing</i>&nbsp;ログアウト</a></li>
                 {else}
-                <li><a href="/auth/login"><i class="icon icon-lg">vpn_key</i>&nbsp;登录</a></li>
-                <li><a href="/auth/register"><i class="icon icon-lg">person_add</i>&nbsp;注册</a></li>
-                <li><a href="/password/reset"><i class="icon icon-lg">security</i>&nbsp;重置密码</a></li>
+                <li><a href="/auth/login"><i class="icon icon-lg">vpn_key</i>&nbsp;ログイン</a></li>
+                <li><a href="/auth/register"><i class="icon icon-lg">person_add</i>&nbsp;新規作成</a></li>
+                <li><a href="/password/reset"><i class="icon icon-lg">security</i>&nbsp;パスワード再設定</a></li>
                 {/if}
             </ul>
         </div>

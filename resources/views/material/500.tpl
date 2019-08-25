@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>该网页无法正常运作 - {$config["appName"]}</title>
+    <title>内部エラー - {$config["appName"]}</title>
     <meta name="keywords" content=""/>
     <meta name="description" content=""/>
     <meta charset="utf-8"/>
@@ -25,14 +25,14 @@
         </div>
         <div class="content">
             <div class="inner">
-                <h1>500 错误</h1>
-                <p>服务娘崩溃了呢... TwT</p>
-                <p>这件事儿不应该发生的...如果反复出现可以提交一下工单联系站主.</p>
+                <h1>500 INTERNAL SERVER ERROR</h1>
+                <p>内部エラー</p>
+                <p>サーバー側に問題が発生しています。常に表示されている場合はadmin@workupa.meまでご連絡ください</p>
             </div>
         </div>
         <nav>
             <ul>
-                <li><a href="./#">返回首页</a></li>
+                <li><a href="./#">トップに戻る</a></li>
             </ul>
         </nav>
     </header>

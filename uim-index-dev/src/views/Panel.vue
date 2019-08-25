@@ -15,25 +15,25 @@
         <div class="pure-u-1 pure-u-xl-6-24 pure-g usrcenter-left">
           <div class="pure-u-1 pure-u-sm-8-24 pure-u-xl-1 card account-base">
             <div class="flex space-between">
-              <div class="card-title">账号明细</div>
+              <div class="card-title">アカウントの詳細</div>
             </div>
             <div class="card-body">
               <div class="pure-g">
                 <div class="pure-u-1-2 pure-u-sm-1 pure-u-xl-1-2">
-                  <p class="tips tips-blue">用户名</p>
+                  <p class="tips tips-blue">ユーザー名</p>
                   <p class="font-light">{{userCon.user_name}}</p>
-                  <p class="tips tips-blue">邮箱</p>
+                  <p class="tips tips-blue">メールアドレス</p>
                   <p class="font-light">{{userCon.email}}</p>
                 </div>
                 <div class="pure-u-1-2 pure-u-sm-1 pure-u-xl-1-2">
-                  <p class="tips tips-blue">VIP等级</p>
+                  <p class="tips tips-blue">VIPレベル</p>
                   <p class="font-light">
                     <span
                       class="user-config"
                       :class="{ 'font-gold-trans':userResourseTrans }"
                     >Lv. {{userCon.class}}</span>
                   </p>
-                  <p class="tips tips-blue">余额</p>
+                  <p class="tips tips-blue">残額</p>
                   <p class="font-light">
                     <span
                       class="user-config"
@@ -129,7 +129,7 @@
                       v-if="currentDlType === 'SSR' && mergeSub !== 'true'"
                       class="pure-g align-center relative"
                     >
-                      <span class="pure-u-6-24">单端口:</span>
+                      <span class="pure-u-6-24">単一ポート:</span>
                       <span class="pure-u-18-24 pure-g relative flex justify-center text-center">
                         <input
                           v-uimclip="{ onSuccess:successCopied }"
@@ -202,11 +202,11 @@
                   >{{menu.name}}</li>
                 </template>
               </uim-dropdown>
-              <a v-if="userCon.is_admin === true" class="btn-user" href="/admin">运营中心</a>
+              <a v-if="userCon.is_admin === true" class="btn-user" href="/admin">オペレーションセンター</a>
             </div>
             <div class="pure-u-1-2 text-right btngroup-right">
-              <a href="/user" class="btn-user">管理面板</a>
-              <button @click="logout" class="btn-user">账号登出</button>
+              <a href="/user" class="btn-user">コントロールパネル</a>
+              <button @click="logout" class="btn-user">ログアウト</button>
             </div>
           </div>
           <transition name="fade" mode="out-in">
@@ -222,7 +222,7 @@
                 class="btn-inline text-red"
                 :data-component="menuOptions[3].id"
                 slot="inviteToShop"
-              >成为VIP请点击这里</button>
+              >ここをクリックしてVIP権を購入する</button>
             </component>
           </transition>
         </div>
