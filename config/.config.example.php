@@ -220,6 +220,11 @@ $System_Config['bitpay_secret']='';
 $System_Config['payjs_mchid']='';
 $System_Config['payjs_key']='';	
 
+#PayPal
+$System_Config['paypal_status']='';
+$System_Config['paypal_appid']='';	
+$System_Config['paypal_secret']='';	
+
 
 //其他面板显示设置------------------------------------------------------------------------------------------
 #后台商品列表 销量统计

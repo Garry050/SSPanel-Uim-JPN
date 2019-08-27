@@ -19,7 +19,7 @@ use \PayPalCheckoutSdk\Core\ProductionEnvironment;
 use \PayPalCheckoutSdk\Orders\OrdersCreateRequest;
 use \PayPalCheckoutSdk\Orders\OrdersCaptureRequest;
 
-class paypal
+class PayPal extends AbstractPayment
 {
 	private $paymethod = "paypal";
 	
@@ -28,18 +28,10 @@ class paypal
 	{
 		try{
 			
-			if($payconfig['configure3']=="live"){
-				$environment = new ProductionEnvironment($payconfig['app_id'], $payconfig['app_secret']);
+			if(Config::get('paypal_status')=="live"){
+				$environment = new ProductionEnvironment(Config::get('paypal_appid'), Config::get('paypal_secret');
 			}else{
-				$environment = new SandboxEnvironment($payconfig['app_id'], $payconfig['app_secret']);
-			}
-			
-			//进行金额的转换
-			$rate = (double)$payconfig['configure4'];
-			if($rate>0){
-				$money = number_format($params['money']/$payconfig['configure4'],2);
-			}else{
-				$money = number_format($params['money'],2);
+				$environment = new SandboxEnvironment(Config::get('paypal_appid'), Config::get('paypal_secret');
 			}
 			
 			$client = new PayPalHttpClient($environment);
@@ -53,7 +45,7 @@ class paypal
 							'return_url' => $params['weburl']. "/product/order/payjump?paymethod=paypal&orderid={$params['orderid']}",
 							'cancel_url' => $params['weburl'],
 							'brand_name' => $params['webname'],
-							'locale' => 'zh-CN',
+							'locale' => 'ja-JP',
 							'landing_page' => 'BILLING',
 							'shipping_preferences' => 'NO_SHIPPING',
 							'user_action' => 'PAY_NOW',
@@ -67,13 +59,13 @@ class paypal
 									'soft_descriptor' => "{$params['productname']}",
 									'amount' =>
 										array(
-											'currency_code' => 'USD',
+											'currency_code' => 'JPY',
 											'value' => "{$money}",
 											'breakdown' =>
 												array(
 													'item_total' =>
 														array(
-															'currency_code' => 'USD',
+															'currency_code' => 'JPY',
 															'value' => "{$money}",
 														),
 												),
@@ -85,7 +77,7 @@ class paypal
 													'name' => "{$params['productname']}",
 													'unit_amount' =>
 														array(
-															'currency_code' => 'USD',
+															'currency_code' => 'JPY',
 															'value' => "{$money}",
 														),
 													'quantity' => '1',
