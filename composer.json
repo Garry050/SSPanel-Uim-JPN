@@ -28,7 +28,8 @@
     "charlottedunois/yasmin": "*",
     "aferrandini/phpqrcode": "1.0.1",
     "magicalex/write-ini-file": "1.2.*",
-    "paypal/paypal-checkout-sdk":"*"
+    "paypal/paypal-checkout-sdk":"*",
+    "magicalex/write-ini-file": "1.2.*"
   },
   "autoload": {
     "classmap": [
