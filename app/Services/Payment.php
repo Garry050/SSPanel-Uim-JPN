@@ -9,7 +9,7 @@
 namespace App\Services;
 
 use App\Services\Gateway\{
-    AopF2F, Codepay, DoiAMPay, PaymentWall, ChenPay, SPay, TrimePay, PayPal
+    AopF2F, Codepay, DoiAMPay, PaymentWall, ChenPay, SPay, TrimePay
 };
 
 class Payment
@@ -34,8 +34,6 @@ class Payment
                 return new TrimePay(Config::get('trimepay_secret'));
             case ('payjs'):
                 return new PAYJS(Config::get('payjs_key'));
-            case ('paypal'):
-                return new PayPal();
             default:
                 return null;
         }

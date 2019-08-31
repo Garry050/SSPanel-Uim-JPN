@@ -19,7 +19,7 @@ use \PayPalCheckoutSdk\Core\ProductionEnvironment;
 use \PayPalCheckoutSdk\Orders\OrdersCreateRequest;
 use \PayPalCheckoutSdk\Orders\OrdersCaptureRequest;
 
-class PayPal extends AbstractPayment
+class paypal
 {
 	private $paymethod = "paypal";
 	
@@ -28,10 +28,18 @@ class PayPal extends AbstractPayment
 	{
 		try{
 			
-			if(Config::get('paypal_status')=="live"){
-				$environment = new ProductionEnvironment(Config::get('paypal_appid'), Config::get('paypal_secret');
+			if($payconfig['configure3']=="live"){
+				$environment = new ProductionEnvironment($payconfig['app_id'], $payconfig['app_secret']);
 			}else{
-				$environment = new SandboxEnvironment(Config::get('paypal_appid'), Config::get('paypal_secret');
+				$environment = new SandboxEnvironment($payconfig['app_id'], $payconfig['app_secret']);
+			}
+			
+			//进行金额的转换
+			$rate = (double)$payconfig['configure4'];
+			if($rate>0){
+				$money = number_format($params['money']/$payconfig['configure4'],2);
+			}else{
+				$money = number_format($params['money'],2);
 			}
 			
 			$client = new PayPalHttpClient($environment);
@@ -45,7 +53,7 @@ class PayPal extends AbstractPayment
 							'return_url' => $params['weburl']. "/product/order/payjump?paymethod=paypal&orderid={$params['orderid']}",
 							'cancel_url' => $params['weburl'],
 							'brand_name' => $params['webname'],
-							'locale' => 'ja-JP',
+							'locale' => 'zh-CN',
 							'landing_page' => 'BILLING',
 							'shipping_preferences' => 'NO_SHIPPING',
 							'user_action' => 'PAY_NOW',
@@ -59,13 +67,13 @@ class PayPal extends AbstractPayment
 									'soft_descriptor' => "{$params['productname']}",
 									'amount' =>
 										array(
-											'currency_code' => 'JPY',
+											'currency_code' => 'USD',
 											'value' => "{$money}",
 											'breakdown' =>
 												array(
 													'item_total' =>
 														array(
-															'currency_code' => 'JPY',
+															'currency_code' => 'USD',
 															'value' => "{$money}",
 														),
 												),
@@ -77,7 +85,7 @@ class PayPal extends AbstractPayment
 													'name' => "{$params['productname']}",
 													'unit_amount' =>
 														array(
-															'currency_code' => 'JPY',
+															'currency_code' => 'USD',
 															'value' => "{$money}",
 														),
 													'quantity' => '1',
