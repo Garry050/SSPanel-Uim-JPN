@@ -3,7 +3,7 @@
         <p class="card-heading">チャージ金額</p>
         <div class="form-group form-group-label">
             <label class="floating-label" for="paypal-amount">金額</label>
-            <input class="form-control" id="paypal-amount" type="number">
+            <input class="form-control" id="paypal-amount" type="number" pattern=" 0+\.[0-9]*[1-9][0-9]*$" name="itemConsumption" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
         </div>
     </div>
 </div>
