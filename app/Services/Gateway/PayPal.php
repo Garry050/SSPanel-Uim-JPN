@@ -68,10 +68,10 @@ class PayPal extends AbstractPayment
         $pl->save();
 
         $payer = new Payer();
-        $payer->setPaymentMethod("paypal");
+        $payer->setPaymentMethod('paypal');
 
         $amount = new Amount();
-        $amount->setCurrency("JPY")->setTotal($price);
+        $amount->setCurrency('JPY')->setTotal($price);
 
         $transaction = new Transaction();
         $transaction
@@ -136,17 +136,17 @@ class PayPal extends AbstractPayment
         $token = $request->getQueryParams()['token'] ?? null;
         $payerID = $request->getQueryParams()['PayerID'] ?? null;
 
-        if (is_null($paymentId)||is_null($token)||is_null($paymentId)) {
+        if (is_null($paymentId) || is_null($token) || is_null($paymentId)) {
             return $response->withStatus(400);
         }
 
 //        try {
 
-            $payment = Payment::get($paymentId, $this->api);
+        $payment = Payment::get($paymentId, $this->api);
 
-            $pid = $payment->getTransactions()[0]->getInvoiceNumber();
-            $p = Paylist::where('tradeno', '=', $pid)->first();
-            $money = $p->total;
+        $pid = $payment->getTransactions()[0]->getInvoiceNumber();
+        $p = Paylist::where('tradeno', '=', $pid)->first();
+        $money = $p->total;
 //        } catch (\Throwable $ex) {
 //        }
 
@@ -167,7 +167,6 @@ class PayPal extends AbstractPayment
             }*/
         }
         return View::getSmarty()->assign('money', $money)->assign('success', $success)->fetch('user/pay_success.tpl');
-
 
 
 //            var_dump($result);
