@@ -218,7 +218,12 @@ $System_Config['bitpay_secret']='';
 
 #PayJs
 $System_Config['payjs_mchid']='';
-$System_Config['payjs_key']='';	
+$System_Config['payjs_key']='';
+
+#paypal
+$System_Config['paypal_clientid'] = '';
+$System_Config['paypal_secret'] = '';
+$System_Config['paypal_mode'] = 'sandbox';
 
 
 //其他面板显示设置------------------------------------------------------------------------------------------
