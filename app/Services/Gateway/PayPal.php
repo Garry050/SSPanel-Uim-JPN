@@ -76,7 +76,7 @@ class PayPal extends AbstractPayment
         $transaction = new Transaction();
         $transaction
             ->setAmount($amount)
-            ->setDescription('Charge SSPanel ' . $pl->tradeno)
+            ->setDescription('Global-SSRへのチャージ ' . $pl->tradeno)
             ->setInvoiceNumber($pl->tradeno);
 
         $payment = new Payment();
