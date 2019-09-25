@@ -5,7 +5,7 @@
 
     <div class="content-header ui-content-header">
         <div class="container">
-            <h1 class="content-heading">用户中心</h1>
+            <h1 class="content-heading">トップ画面</h1>
         </div>
     </div>
     <div class="container">
@@ -17,14 +17,14 @@
                         <div class="user-info-main">
                             <div class="nodemain">
                                 <div class="nodehead node-flex">
-                                    <div class="nodename">帐号等级</div>
+                                    <div class="nodename">ユーザーランク</div>
                                 </div>
                                 <div class="nodemiddle node-flex">
                                     <div class="nodetype">
                                         {if $user->class!=0}
                                             <dd>VIP {$user->class}</dd>
                                         {else}
-                                            <dd>普通用户</dd>
+                                            <dd>通常ユーザー</dd>
                                         {/if}
                                     </div>
                                 </div>
@@ -38,11 +38,11 @@
                         <div class="user-info-bottom">
                             <div class="nodeinfo node-flex">
                                 {if $user->class!=0}
-                                    <span><i class="icon icon-md">add_circle</i>到期流量清空</span>
+                                    <span><i class="icon icon-md">add_circle</i>通信量を追加する</span>
                                 {else}
-                                    <span><i class="icon icon-md">add_circle</i>升级解锁 VIP 节点</span>
+                                    <span><i class="icon icon-md">add_circle</i>VIPを購入して利用可能なサーバーを追加する</span>
                                 {/if}
-                                <a href="/user/shop" class="card-tag tag-orange">商店</a>
+                                <a href="/user/shop" class="card-tag tag-orange">ストア</a>
                             </div>
                         </div>
                     </div>
@@ -52,11 +52,11 @@
                         <div class="user-info-main">
                             <div class="nodemain">
                                 <div class="nodehead node-flex">
-                                    <div class="nodename">余额</div>
+                                    <div class="nodename">残高</div>
                                 </div>
                                 <div class="nodemiddle node-flex">
                                     <div class="nodetype">
-                                        {$user->money} CNY
+                                        {$user->money} 円
                                     </div>
                                 </div>
                             </div>
@@ -68,8 +68,8 @@
                         </div>
                         <div class="user-info-bottom">
                             <div class="nodeinfo node-flex">
-                                <span><i class="icon icon-md">attach_money</i>账户余额</span>
-                                <a href="/user/code" class="card-tag tag-green">充值</a>
+                                <span><i class="icon icon-md">attach_money</i>残高をチャージする</span>
+                                <a href="/user/code" class="card-tag tag-green">チャージ</a>
                             </div>
                         </div>
                     </div>
@@ -79,14 +79,14 @@
                         <div class="user-info-main">
                             <div class="nodemain">
                                 <div class="nodehead node-flex">
-                                    <div class="nodename">在线设备数</div>
+                                    <div class="nodename">現在の接続数</div>
                                 </div>
                                 <div class="nodemiddle node-flex">
                                     <div class="nodetype">
                                         {if $user->node_connector!=0}
                                             <dd>{$user->online_ip_count()} / {$user->node_connector}</dd>
                                         {else}
-                                            <dd>{$user->online_ip_count()} / 不限制</dd>
+                                            <dd>{$user->online_ip_count()} / 無制限</dd>
                                         {/if}
                                     </div>
                                 </div>
@@ -99,7 +99,7 @@
                         </div>
                         <div class="user-info-bottom">
                             <div class="nodeinfo node-flex">
-                                <span><i class="icon icon-md">donut_large</i>在线设备/设备限制数</span>
+                                <span><i class="icon icon-md">donut_large</i>接続数/制限数</span>
                             </div>
                         </div>
                     </div>
@@ -109,14 +109,14 @@
                         <div class="user-info-main">
                             <div class="nodemain">
                                 <div class="nodehead node-flex">
-                                    <div class="nodename">端口速率</div>
+                                    <div class="nodename">回線速度</div>
                                 </div>
                                 <div class="nodemiddle node-flex">
                                     <div class="nodetype">
                                         {if $user->node_speedlimit!=0}
                                             <dd><code>{$user->node_speedlimit}</code>Mbps</dd>
                                         {else}
-                                            <dd>无限制</dd>
+                                            <dd>無制限</dd>
                                         {/if}
                                     </div>
                                 </div>
@@ -129,7 +129,7 @@
                         </div>
                         <div class="user-info-bottom">
                             <div class="nodeinfo node-flex">
-                                <span><i class="icon icon-md">signal_cellular_alt</i>账户最高下行网速</span>
+                                <span><i class="icon icon-md">signal_cellular_alt</i>サーバーで利用できる下り最大速度</span>
                             </div>
                         </div>
                     </div>
@@ -151,7 +151,7 @@
                                     var chart = new CanvasJS.Chart("traffic_chart", {
                                         theme: "light1",
                                         title: {
-                                            text: "流量使用情况",
+                                            text: "通信量の状況",
                                             fontFamily: "Impact",
                                             fontWeight: "normal"
                                         },
@@ -172,13 +172,13 @@
                                             dataPoints: [
                                                 {if $user->transfer_enable != 0}
                                                 {
-                                                    y: {$user->last_day_t/$user->transfer_enable*100},label: "过去已用", legendText:"过去已用 {number_format($user->last_day_t/$user->transfer_enable*100,2)}% {$user->LastusedTraffic()}", indexLabel: "过去已用 {number_format($user->last_day_t/$user->transfer_enable*100,2)}% {$user->LastusedTraffic()}"
+                                                    y: {$user->last_day_t/$user->transfer_enable*100},label: "利用した通信量", legendText:"利用した通信量 {number_format($user->last_day_t/$user->transfer_enable*100,2)}% {$user->LastusedTraffic()}", indexLabel: "利用した通信量 {number_format($user->last_day_t/$user->transfer_enable*100,2)}% {$user->LastusedTraffic()}"
                                                 },
                                                 {
-                                                    y: {($user->u+$user->d-$user->last_day_t)/$user->transfer_enable*100},label: "今日已用", legendText:"今日已用 {number_format(($user->u+$user->d-$user->last_day_t)/$user->transfer_enable*100,2)}% {$user->TodayusedTraffic()}", indexLabel: "今日已用 {number_format(($user->u+$user->d-$user->last_day_t)/$user->transfer_enable*100,2)}% {$user->TodayusedTraffic()}"
+                                                    y: {($user->u+$user->d-$user->last_day_t)/$user->transfer_enable*100},label: "今日利用した通信量", legendText:"今日利用した通信量 {number_format(($user->u+$user->d-$user->last_day_t)/$user->transfer_enable*100,2)}% {$user->TodayusedTraffic()}", indexLabel: "今日利用した通信量 {number_format(($user->u+$user->d-$user->last_day_t)/$user->transfer_enable*100,2)}% {$user->TodayusedTraffic()}"
                                                 },
                                                 {
-                                                    y: {($user->transfer_enable-($user->u+$user->d))/$user->transfer_enable*100},label: "剩余可用", legendText:"剩余可用 {number_format(($user->transfer_enable-($user->u+$user->d))/$user->transfer_enable*100,2)}% {$user->unusedTraffic()}", indexLabel: "剩余可用 {number_format(($user->transfer_enable-($user->u+$user->d))/$user->transfer_enable*100,2)}% {$user->unusedTraffic()}"
+                                                    y: {($user->transfer_enable-($user->u+$user->d))/$user->transfer_enable*100},label: "残りの通信量", legendText:"残りの通信量 {number_format(($user->transfer_enable-($user->u+$user->d))/$user->transfer_enable*100,2)}% {$user->unusedTraffic()}", indexLabel: "残りの通信量 {number_format(($user->transfer_enable-($user->u+$user->d))/$user->transfer_enable*100,2)}% {$user->unusedTraffic()}"
                                                 }
                                                 {/if}
                                             ]
@@ -197,7 +197,7 @@
                                     <div class="label-flex">
                                         <div class="label la-top">
                                             <div class="bar ard color3"></div>
-                                            <span class="traffic-info">今日已用</span>
+                                            <span class="traffic-info">今日利用した通信量</span>
                                             <code class="card-tag tag-red">{$user->TodayusedTraffic()}</code>
                                         </div>
                                     </div>
@@ -211,7 +211,7 @@
                                     <div class="label-flex">
                                         <div class="label la-top">
                                             <div class="bar ard color2"><span></span></div>
-                                            <span class="traffic-info">过去已用</span>
+                                            <span class="traffic-info">利用した通信量</span>
                                             <code class="card-tag tag-orange">{$user->LastusedTraffic()}</code>
                                         </div>
                                     </div>
@@ -225,7 +225,7 @@
                                     <div class="label-flex">
                                         <div class="label la-top">
                                             <div class="bar ard color"><span></span></div>
-                                            <span class="traffic-info">剩余流量</span>
+                                            <span class="traffic-info">残りの通信量</span>
                                             <code class="card-tag tag-green" id="remain">{$user->unusedTraffic()}</code>
                                         </div>
                                     </div>
@@ -239,67 +239,39 @@
                     <div class="card">
                         <div class="card-main">
                             <div class="card-inner margin-bottom-no">
-                                <p class="card-heading"><i class="icon icon-md">account_circle</i>账号使用情况</p>
+                                <p class="card-heading"><i class="icon icon-md">account_circle</i>アカウント状態</p>
                                 <dl class="dl-horizontal">
 
 
-                                    <dt>等级过期时间</dt>
+                                    <dt>ランクの有効期限</dt>
                                     {if $user->class_expire!="1989-06-04 00:05:00"}
                                     <dd><i class="icon icon-md">event</i>&nbsp;{$user->class_expire}</dd>
                                     {else}
-                                    <dd><i class="icon icon-md">event</i>&nbsp;不过期</dd>
+                                    <dd><i class="icon icon-md">event</i>&nbsp;無し</dd>
                                     {/if}
 
-                                    <dt>等级有效期</dt>
+                                    <dt>ランクが失効するまで</dt>
                                     <i class="icon icon-md">event</i>
-                                    <span class="label-level-expire">剩余</span>
+                                    <span class="label-level-expire">残り</span>
                                     <code><span id="days-level-expire"></span></code>
-                                    <span class="label-level-expire">天</span>
+                                    <span class="label-level-expire">日</span>
 
-                                    <dt>帐号过期时间</dt>
+                                    <dt>アカウントの有効期限</dt>
                                     <dd><i class="icon icon-md">event</i>&nbsp;{$user->expire_in}</dd>
 
-                                    <dt>账号有效期</dt>
+                                    <dt>アカウントの失効するまで</dt>
                                     <i class="icon icon-md">event</i>
-                                    <span class="label-account-expire">剩余</span>
+                                    <span class="label-account-expire">残り</span>
                                     <code><span id="days-account-expire"></span></code>
-                                    <span class="label-account-expire">天</span>
+                                    <span class="label-account-expire">日</span>
 
-                                    <dt>上次使用</dt>
-                                    {if $user->lastSsTime()!="从未使用喵"}
+                                    <dt>最後の接続時刻</dt>
+                                    {if $user->lastSsTime()!="まだ接続したことがないようです"}
                                     <dd><i class="icon icon-md">event</i>&nbsp;{$user->lastSsTime()}</dd>
                                     {else}
-                                    <dd><i class="icon icon-md">event</i>&nbsp;从未使用</dd>
+                                    <dd><i class="icon icon-md">event</i>&nbsp;まだ接続したことがないようです</dd>
                                     {/if}
 
-                                    <dt>上次签到时间：</dt>
-                                    <dd><i class="icon icon-md">event</i>&nbsp;{$user->lastCheckInTime()}</dd>
-
-                                    <p id="checkin-msg"></p>
-
-                                    {if $geetest_html != null}
-                                        <div id="popup-captcha"></div>
-                                    {/if}
-                                    {if $recaptcha_sitekey != null && $user->isAbleToCheckin()}
-                                        <div class="g-recaptcha" data-sitekey="{$recaptcha_sitekey}"></div>
-                                    {/if}
-
-
-                                    <div class="card-action">
-                                        <div class="usercheck pull-left">
-                                            {if $user->isAbleToCheckin() }
-                                                <div id="checkin-btn">
-                                                    <button id="checkin" class="btn btn-brand btn-flat"><span
-                                                                class="icon">check</span>&nbsp;点我签到&nbsp;
-                                                        <div><span class="icon">screen_rotation</span>&nbsp;或者摇动手机签到
-                                                        </div>
-                                                    </button>
-                                                </div>
-                                            {else}
-                                                <p><a class="btn btn-brand disabled btn-flat" href="#"><span
-                                                                class="icon">check</span>&nbsp;今日已签到</a></p>
-                                            {/if}
-                                        </div>
                                     </div>
                                 </dl>
                             </div>
@@ -313,14 +285,14 @@
                     <div class="card">
                         <div class="card-main">
                             <div class="card-inner margin-bottom-no">
-                                <p class="card-heading"><i class="icon icon-md">notifications_active</i>公告栏</p>
+                                <p class="card-heading"><i class="icon icon-md">notifications_active</i>お知らせ</p>
                                 {if $ann != null}
                                     <p>{$ann->content}</p>
                                     <br/>
-                                    <strong>查看所有公告请<a href="/user/announcement">点击这里</a></strong>
+                                    <strong>全てのお知らせを見たい場合は<a href="/user/announcement">ここをクリック</a></strong>
                                 {/if}
                                 {if $config["enable_admin_contact"] == 'true'}
-                                    <p class="card-heading">管理员联系方式</p>
+                                    <p class="card-heading">管理人の連絡先</p>
                                     {if $config["admin_contact1"]!=null}
                                         <p>{$config["admin_contact1"]}</p>
                                     {/if}
@@ -340,22 +312,18 @@
                         <div class="card-main">
                             <div class="card-inner margin-bottom-no">
                                 <div class="cardbtn-edit">
-                                    <div class="card-heading"><i class="icon icon-md">phonelink</i> 快速添加节点</div>
-                                    <div class="reset-flex"><span>重置订阅链接</span><a
+                                    <div class="card-heading"><i class="icon icon-md">phonelink</i>サブスクリプション</div>
+                                    <div class="reset-flex"><span>リンクを変更する</span><a
                                                 class="reset-link btn btn-brand-accent btn-flat"><i class="icon">autorenew</i>&nbsp;</a>
                                     </div>
                                 </div>
                                 <nav class="tab-nav margin-top-no">
                                     <ul class="nav nav-list">
                                         <li {if $ssr_prefer}class="active"{/if}>
-                                            <a class="" data-toggle="tab" href="#all_ssr"><i class="icon icon-lg">airplanemode_active</i>&nbsp;SSR</a>
+                                            <a class="" data-toggle="tab" href="#all_ssr"><i class="icon icon-lg">flight_takeoff</i>&nbsp;SSR</a>
                                         </li>
                                         <li {if !$ssr_prefer}class="active"{/if}>
                                             <a class="" data-toggle="tab" href="#all_ss"><i class="icon icon-lg">flight_takeoff</i>&nbsp;SS/SSD</a>
-                                        </li>
-
-                                        <li>
-                                            <a class="" data-toggle="tab" href="#all_v2ray"><i class="icon icon-lg">flight_land</i>&nbsp;V2RAY</a>
                                         </li>
                                     </ul>
                                 </nav>
@@ -1108,124 +1076,6 @@
                                                     手动添加需要的节点并勾选->应用主SS->打开上方的开关</p>
                                             </div>
                                         </div>
-
-                                        <div class="tab-pane fade" id="all_v2ray">
-                                            <nav class="tab-nav margin-top-no">
-                                                <ul class="nav nav-list">
-                                                    <li class="active">
-                                                        <a class="" data-toggle="tab" href="#all_v2ray_windows">
-                                                            <i class="icon icon-lg">desktop_windows</i>&nbsp;Windows</a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="" data-toggle="tab" href="#all_v2ray_ios">
-                                                            <i class="icon icon-lg">laptop_mac</i>&nbsp;iOS</a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="" data-toggle="tab" href="#all_v2ray_android">
-                                                            <i class="icon icon-lg">android</i>&nbsp;Android</a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="" data-toggle="tab" href="#all_v2ray_info">
-                                                            <i class="icon icon-lg">info_outline</i>&nbsp;连接信息</a>
-                                                    </li>
-                                                </ul>
-                                            </nav>
-                                            <div class="tab-pane fade active in" id="all_v2ray_windows">
-                                                <p><span class="icon icon-lg text-white">filter_1</span><a
-                                                            href="/ssr-download/v2rayn.zip" class="btn-dl"><i
-                                                                class="material-icons">save_alt</i> 点击下载 V2RayN</a>，解压至任意磁盘并运行
-                                                </p>
-                                                <p><span class="icon icon-lg text-white">filter_2</span>
-                                                    双击任务栏右下角V2RayN图标->订阅->订阅设置->添加->填入下方的地址，点击确定</p>
-                                                <p><span class="icon icon-lg text-white">filter_3</span>
-                                                    再次点击订阅->更新订阅，右击任务栏右下角V2RayN图标->启动Http代理</p>
-                                                <p><span class="icon icon-lg text-white">filter_4</span>
-                                                    自行选择“Http代理模式”和“服务器”</p>
-                                                <p> 也可以使用 Clash 进行连接，<a href="/ssr-download/Clash-Windows.7z"
-                                                                        class="btn-dl"><i class="material-icons">save_alt</i>
-                                                        点击下载 Clash for Windows
-                                                    </a></p>
-                                                <div><span class="icon icon-lg text-white">flash_auto</span> 节点订阅地址：
-                                                </div>
-                                                <div class="float-clear">
-                                                    <input type="text"
-                                                           class="input form-control form-control-monospace cust-link col-xx-12 col-sm-8 col-lg-7"
-                                                           name="input1" value="{$subUrl}{$ssr_sub_token}?mu=2"
-                                                           readonly="true">
-                                                    <button class="copy-text btn btn-subscription col-xx-12 col-sm-3 col-lg-2"
-                                                            type="button"
-                                                            data-clipboard-text="{$subUrl}{$ssr_sub_token}?mu=2">
-                                                        点击复制
-                                                    </button>
-                                                    <br>
-                                                </div>
-                                            </div>
-                                            <div class="tab-pane fade" id="all_v2ray_ios">
-                                                <p><span class="icon icon-lg text-white">filter_1</span> 在非国区AppStore中搜索<code>Shadowrocket</code>下载安装
-                                                </p>
-                                                <p><span class="icon icon-lg text-white">filter_2</span> 打开
-                                                    Shadowrocket，点击右上角的 + 号，类型选择“Subscribe”，URL填写以下地址并点击右上角完成即可。或使用<a
-                                                            href="javascript:void(0);" class="btn-dl"
-                                                            style="margin-left: 5px;" data-onekeyfor="v2sub"><i
-                                                                class="material-icons icon-sm">how_to_vote</i>小火箭一键订阅</a>
-                                                </p>
-                                                <div><span class="icon icon-lg text-white">flash_auto</span> 节点订阅地址：
-                                                </div>
-                                                <div class="float-clear"><input type="text"
-                                                                                class="input form-control form-control-monospace cust-link col-xx-12 col-sm-8 col-lg-7"
-                                                                                name="input1" id="v2sub" readonly
-                                                                                value="{$subUrl}{$ssr_sub_token}?mu=2"
-                                                                                readonly="true">
-                                                    <button class="copy-text btn btn-subscription col-xx-12 col-sm-3 col-lg-2"
-                                                            type="button"
-                                                            data-clipboard-text="{$subUrl}{$ssr_sub_token}?mu=2">点击复制
-                                                    </button>
-                                                    <br></div>
-                                            </div>
-                                            <div class="tab-pane fade" id="all_v2ray_android">
-                                                <p><span class="icon icon-lg text-white">filter_1</span><a
-                                                            href="/ssr-download/v2rayng.apk" class="btn-dl"><i
-                                                                class="material-icons">save_alt</i> 点击下载 V2RayNG</a>并安装
-                                                </p>
-                                                <p><span class="icon icon-lg text-white">filter_2</span>
-                                                    点击左上角菜单按钮展开菜单->订阅设置->点击右上角“+”，URL填写以下地址并点击右上角“√”保存</p>
-                                                <p><span class="icon icon-lg text-white">filter_3</span>
-                                                    回到软件主界面->点击右上角“更多”按钮->更新订阅</p>
-                                                <p><span class="icon icon-lg text-white">filter_4</span>
-                                                    选择一个节点，点击右下角按钮订阅</p>
-                                                <div><span class="icon icon-lg text-white">flash_auto</span> 节点订阅地址：
-                                                </div>
-                                                <div class="float-clear">
-                                                    <input type="text"
-                                                           class="input form-control form-control-monospace cust-link col-xx-12 col-sm-8 col-lg-7"
-                                                           name="input1" value="{$subUrl}{$ssr_sub_token}?mu=2"
-                                                           readonly="true">
-                                                    <button class="copy-text btn btn-subscription col-xx-12 col-sm-3 col-lg-2"
-                                                            type="button"
-                                                            data-clipboard-text="{$subUrl}{$ssr_sub_token}?mu=2">
-                                                        点击复制
-                                                    </button>
-                                                    <br>
-                                                </div>
-                                            </div>
-                                            <div class="tab-pane fade" id="all_v2ray_info">
-                                                {$v2_url_all = URL::getAllVMessUrl($user)}
-                                                <p><a class="copy-text btn-dl" data-clipboard-text="{$v2_url_all}"><i
-                                                                class="material-icons icon-sm">how_to_vote</i>点击这里复制全部
-                                                        VMess 链接</a></p>
-                                                <div><span class="icon icon-lg text-white">flash_auto</span> 订阅地址：</div>
-                                                <div class="float-clear">
-                                                    <input type="text"
-                                                           class="input form-control form-control-monospace cust-link col-xx-12 col-sm-8 col-lg-7"
-                                                           name="input1" value="{$subUrl}{$ssr_sub_token}?mu=2"
-                                                           readonly="true"/>
-                                                    <button class="copy-text btn btn-subscription col-xx-12 col-sm-3 col-lg-2"
-                                                            type="button"
-                                                            data-clipboard-text="{$subUrl}{$ssr_sub_token}?mu=2">
-                                                        点击复制
-                                                    </button>
-                                                    <br>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>

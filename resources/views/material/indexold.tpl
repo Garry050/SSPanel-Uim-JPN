@@ -35,31 +35,31 @@
         {if $user->isLogin}
             <div class="content">
                 <div class="inner">
-                    <p>用户：<code>{$user->user_name}</code>
-                        等级：
+                    <p>ユーザー：<code>{$user->user_name}</code>
+                        ランク：
                         {if $user->class!=0}
                             <code>VIP{$user->class}</code>
                         {else}
-                            <code>免费</code>
+                            <code>無し</code>
                         {/if}
-                        过期时间：
+                        有効期限：
                         {if $user->class_expire!="1989-06-04 00:05:00"}
                             <code>{$user->class_expire}</code>
                         {else}
-                            <code>不过期</code>
+                            <code>無期限</code>
                         {/if}
                     </p>
-                    <p>总流量：<code>{$user->enableTraffic()}</code>
-                        已用流量：<code>{$user->usedTraffic()}</code>
-                        剩余流量：<code>{$user->unusedTraffic()}</code>
+                    <p>全通信量：<code>{$user->enableTraffic()}</code>
+                        使用した通信量：<code>{$user->usedTraffic()}</code>
+                        残りの通信量：<code>{$user->unusedTraffic()}</code>
                     </p>
                 </div>
             </div>
             <nav>
                 <ul>
-                    <li><a href="#1">简介</a></li>
-                    <li><a href="/user">用户中心</a></li>
-                    <li><a href="/user/logout">退出登录</a></li>
+                    <li><a href="#1">はじめに</a></li>
+                    <li><a href="/user">ユーザー設定</a></li>
+                    <li><a href="/user/logout">ログアウト</a></li>
                 </ul>
             </nav>
         {else}
@@ -75,9 +75,9 @@
             </div>
             <nav>
                 <ul>
-                    <li><a href="#1">简介</a></li>
-                    <li><a href="/auth/login">登录</a></li>
-                    <li><a href="/auth/register">注册</a></li>
+                    <li><a href="#1">はじめに</a></li>
+                    <li><a href="/auth/login">ログイン</a></li>
+                    <li><a href="/auth/register">新規登録</a></li>
                 </ul>
             </nav>
         {/if}
@@ -87,8 +87,8 @@
     <div id="main">
         <!--标签1开始-->
         <article id="1">
-            <h2 class="major">简介</h2>
-            <p>「ホワイトアルバムの季節」が、また、やってきた。</p>
+            <h2 class="major">はじめに</h2>
+            <p>Global-SSRに訪問していただきありがとうございます<br>当サービスはShadowsocksを利用した海外サーバーへの接続を提供する内容となっております<br>現在日本-上海間直通回線やCN2回線の運用を開始しております</p>
         </article>
         <!--
         简介修改示例:
@@ -97,9 +97,9 @@
         -->
         <!--标签4开始-->
         <article id="4">
-            <h2 class="major">联系我们</h2>
+            <h2 class="major">連絡先</h2>
             <ul class="icons">
-                <p>此处填写联系方式</p>
+                <p>ここに連絡先を入力してください</p>
                 <li>
                     <a target="_blank" href="#" class="icon fa-facebook">
                         <!-- 请在 fontawesome.com 寻找替换图标 href 替换链接 -->
@@ -109,14 +109,14 @@
             </ul>
         </article>
         <article id="login">
-            <h2 class="major">登录</h2>
+            <h2 class="major">ログイン</h2>
             <form method="post" action="javascript:void(0);">
                 <div class="field half first">
-                    <label for="email2">邮箱</label>
+                    <label for="email2">メールアドレス</label>
                     <input type="text" name="Email" id="email2"/>
                 </div>
                 <div class="field half">
-                    <label for="passwd">密码</label>
+                    <label for="passwd">パスワード</label>
                     <input type="password" name="Password" id="passwd"/>
                 </div>
 
@@ -128,7 +128,7 @@
 
             <div class="field half">
                 <input value="week" id="remember_me" name="remember_me" type="checkbox" checked>
-                <label for="remember_me">记住我</label>
+                <label for="remember_me">ログインを記憶する</label>
             </div>
 
             <br>

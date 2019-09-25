@@ -1,9 +1,9 @@
 <div class="card-inner">
     <div class="row">
         <div class="col-lg-6 col-md-6">
-            <p class="card-heading">支付宝在线充值</p>
+            <p class="card-heading">Alipayでチャージ</p>
             <div class="form-group form-group-label">
-                <label class="floating-label" for="amount">金额</label>
+                <label class="floating-label" for="amount">金額</label>
                 <input class="form-control" id="amount" type="text">
             </div>
         </div>
@@ -13,7 +13,7 @@
     </div>
 </div>
 
-<a class="btn btn-flat waves-attach" id="pay" onclick="pay();"><span class="icon">check</span>&nbsp;充值</a>
+<a class="btn btn-flat waves-attach" id="pay" onclick="pay();"><span class="icon">check</span>&nbsp;支払う</a>
 
 <script>
     var pid = 0;
@@ -72,7 +72,7 @@
                     //console.log(data);
                     $("#alipay").modal('hide');
                     $("#result").modal();
-                    $$.getElementById('msg').innerHTML = '充值成功';
+                    $$.getElementById('msg').innerHTML = 'チャージ完了';
                     window.setTimeout("location.href=window.location.href", {$config['jump_delay']});
                 }
             },

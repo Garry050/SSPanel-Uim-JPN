@@ -4,7 +4,7 @@
 <main class="content">
     <div class="content-header ui-content-header">
         <div class="container">
-            <h1 class="content-heading">购买记录</h1>
+            <h1 class="content-heading">購入履歴</h1>
         </div>
     </div>
     <div class="container">
@@ -14,7 +14,7 @@
                 <div class="card">
                     <div class="card-main">
                         <div class="card-inner">
-                            <p>系统中您的购买记录。</p>
+                            <p>システム内の購入履歴</p>
                         </div>
                     </div>
                 </div>
@@ -28,12 +28,12 @@
                                     <table class="table">
                                         <tr>
                                             <th>ID</th>
-                                            <th>购买时间</th>
-                                            <th>商品名称</th>
+                                            <th>購入時間</th>
+                                            <th>商品名</th>
                                             <th>内容</th>
-                                            <th>价格</th>
-                                            <th>续费时间</th>
-                                            <th>续费时重置流量</th>
+                                            <th>価格</th>
+                                            <th>商品の更新期間</th>
+                                            <th>購入時に通信量のリセット</th>
                                             <th>操作</th>
                                         </tr>
                                         {foreach $shops as $shop}
@@ -42,24 +42,24 @@
                                                 <td>{$shop->datetime("Y/m/d",$date_unix)}</td>
                                                 <td>{$shop->shop()->name}</td>
                                                 <td>{$shop->shop()->content()}</td>
-                                                <td>{$shop->price} 元</td>
+                                                <td>{$shop->price} 円</td>
 
                                                 {if $shop->renew==0}
-                                                    <td>不自动续费</td>
+                                                    <td>自動的に更新しない</td>
                                                 {else}
-                                                    <td>在 {$shop->renew_date()} 续费</td>
+                                                    <td>{$shop->renew_date()} に更新する</td>
                                                 {/if}
 
                                                 {if $shop->shop()->auto_reset_bandwidth==0}
-                                                    <td>不自动重置</td>
+                                                    <td>リセットしない</td>
                                                 {else}
-                                                    <td>自动重置</td>
+                                                    <td>リセットする</td>
                                                 {/if}
 
                                                 <td>
                                                     <a class="btn btn-brand"
                                                        {if $shop->renew==0}disabled{else}href="javascript:void(0);"
-                                                       onClick="delete_modal_show('{$shop->id}')"{/if}>关闭自动续费</a>
+                                                       onClick="delete_modal_show('{$shop->id}')"{/if}>自動更新を無効にする</a>
                                                 </td>
 
                                             </tr>
@@ -78,20 +78,20 @@
                         <div class="modal-content">
                             <div class="modal-heading">
                                 <a class="modal-close" data-dismiss="modal">×</a>
-                                <h2 class="modal-title">确认要关闭自动续费？</h2>
+                                <h2 class="modal-title">自動更新を無効にしますか？</h2>
                             </div>
                             <div class="modal-inner">
-                                <p>请您确认。</p>
+                                <p>無効にする場合は決定を押してください</p>
                             </div>
                             <div class="modal-footer">
                                 <p class="text-right">
                                     <button class="btn btn-flat btn-brand-accent waves-attach waves-effect"
                                             data-dismiss="modal" type="button">
-                                        取消
+                                        キャンセル
                                     </button>
                                     <button class="btn btn-flat btn-brand-accent waves-attach" data-dismiss="modal"
                                             id="delete_input" type="button">
-                                        确定
+                                        決定
                                     </button>
                                 </p>
                             </div>
@@ -139,7 +139,7 @@
                     $("#result").modal();
                     $$.getElementById('msg').innerHTML = `${
                             data.msg
-                            } 发生错误了`;
+                            } エラーが発生しました`;
                 }
             });
         }

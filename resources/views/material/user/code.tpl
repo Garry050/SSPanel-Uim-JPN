@@ -3,7 +3,7 @@
 <main class="content">
     <div class="content-header ui-content-header">
         <div class="container">
-            <h1 class="content-heading">充值</h1>
+            <h1 class="content-heading">チャージ</h1>
 
 
         </div>
@@ -17,11 +17,11 @@
                         <div class="card-main">
                             <div class="card-inner">
                                 <div class="card-inner">
-                                    <p class="card-heading">注意!</p>
-                                    <p>充值完成后需刷新网页以查看余额，通常一分钟内到账。</p>
-                                    <p>因余额不足而未能完成的自动续费，在余额足够时会自动划扣续费。</p>
+                                    <p class="card-heading">注意</p>
+                                    <p>チャージが完了した場合は1分以内に自動的にページが更新されますが、更新されない場合は手動でページを更新してください。</p>
+                                    <p><b>商品の自動更新が残高不足により更新できない場合、残高が自動更新の価格以上になった時点で自動的に差し引かれます。予めご了承ください。</b></p>
                                     {if $config["enable_admin_contact"] == 'true'}
-                                        <p class="card-heading">如果没有到账请立刻联系管理员：</p>
+                                        <p class="card-heading">チャージが完了したにもかかわらず残高が増えていない場合は管理人に連絡してください：</p>
                                         {if $config["admin_contact1"]!=null}
                                             <li>{$config["admin_contact1"]}</li>
                                         {/if}
@@ -33,7 +33,7 @@
                                         {/if}
                                     {/if}
                                     <br/>
-                                    <p><i class="icon icon-lg">attach_money</i>当前余额：<font color="#399AF2" size="5">{$user->money}</font> 元</p>
+                                    <p><i class="icon icon-lg">attach_money</i>残高：<font color="#399AF2" size="5">{$user->money}</font> 円</p>
                                 </div>
                             </div>
                         </div>
@@ -71,13 +71,13 @@
                             <div class="card-inner">
                                 <div class="card-inner">
                                     <div class="cardbtn-edit">
-                                        <div class="card-heading">充值码</div>
+                                        <div class="card-heading">チャージ番号</div>
                                         <button class="btn btn-flat" id="code-update">
                                             <span class="icon">favorite_border</span>
                                         </button>
                                     </div>
                                     <div class="form-group form-group-label">
-                                        <label class="floating-label" for="code">充值码</label>
+                                        <label class="floating-label" for="code">チャージ番号</label>
                                         <input class="form-control maxwidth-edit" id="code" type="text">
                                     </div>
                                 </div>
@@ -97,10 +97,10 @@
                                         <table class="table table-hover">
                                             <tr>
                                                 <!--<th>ID</th> -->
-                                                <th>代码</th>
-                                                <th>类型</th>
-                                                <th>操作</th>
-                                                <th>使用时间</th>
+                                                <th>支払い方法</th>
+                                                <th>種類</th>
+                                                <th>内容</th>
+                                                <th>日時</th>
 
                                             </tr>
                                             {foreach $codes as $code}
@@ -109,28 +109,28 @@
                                                         <!--	<td>#{$code->id}</td>  -->
                                                         <td>{$code->code}</td>
                                                         {if $code->type==-1}
-                                                            <td>金额充值</td>
+                                                            <td>残高のチャージ</td>
                                                         {/if}
                                                         {if $code->type==10001}
-                                                            <td>流量充值</td>
+                                                            <td>通信量のチャージ</td>
                                                         {/if}
                                                         {if $code->type==10002}
-                                                            <td>用户续期</td>
+                                                            <td>アカウントの更新</td>
                                                         {/if}
                                                         {if $code->type>=1&&$code->type<=10000}
-                                                            <td>等级续期 - 等级{$code->type}</td>
+                                                            <td>ランクの更新 - ランク{$code->type}</td>
                                                         {/if}
                                                         {if $code->type==-1}
-                                                            <td>充值 {$code->number} 元</td>
+                                                            <td>{$code->number} 円チャージ</td>
                                                         {/if}
                                                         {if $code->type==10001}
-                                                            <td>充值 {$code->number} GB 流量</td>
+                                                            <td>{$code->number} GBチャージ</td>
                                                         {/if}
                                                         {if $code->type==10002}
-                                                            <td>延长账户有效期 {$code->number} 天</td>
+                                                            <td>更新したアカウントの有効期限 {$code->number} 日</td>
                                                         {/if}
                                                         {if $code->type>=1&&$code->type<=10000}
-                                                            <td>延长等级有效期 {$code->number} 天</td>
+                                                            <td>更新したランクの有効期限 {$code->number} 日</td>
                                                         {/if}
                                                         <td>{$code->usedatetime}</td>
                                                     </tr>
@@ -151,10 +151,10 @@
                         <div class="modal-content">
                             <div class="modal-heading">
                                 <a class="modal-close" data-dismiss="modal">×</a>
-                                <h2 class="modal-title">正在连接支付网关</h2>
+                                <h2 class="modal-title">支払先へ接続中…</h2>
                             </div>
                             <div class="modal-inner">
-                                <p id="title">感谢您对我们的支持，请耐心等待</p>
+                                <p id="title">もうしばらくお待ち下さい</p>
                             </div>
                         </div>
                     </div>
@@ -189,7 +189,7 @@
                 error: (jqXHR) => {
                     $("#result").modal();
 {literal}
-                    $$.getElementById('msg').innerHTML = `发生错误：${jqXHR.status}`;
+                    $$.getElementById('msg').innerHTML = `エラー：${jqXHR.status}`;
 {/literal}
                 }
             })
