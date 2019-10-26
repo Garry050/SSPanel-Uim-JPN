@@ -271,11 +271,7 @@
                                     {else}
                                     <dd><i class="icon icon-md">event</i>&nbsp;まだ接続したことがないようです</dd>
                                     {/if}
-
                                     </div>
-                                </dl>
-                            </div>
-
                         </div>
                     </div>
                 </div>
@@ -320,10 +316,7 @@
                                 <nav class="tab-nav margin-top-no">
                                     <ul class="nav nav-list">
                                         <li {if $ssr_prefer}class="active"{/if}>
-                                            <a class="" data-toggle="tab" href="#all_ssr"><i class="icon icon-lg">flight_takeoff</i>&nbsp;SSR</a>
-                                        </li>
-                                        <li {if !$ssr_prefer}class="active"{/if}>
-                                            <a class="" data-toggle="tab" href="#all_ss"><i class="icon icon-lg">flight_takeoff</i>&nbsp;SS/SSD</a>
+                                            <a class="" data-toggle="tab" href="#all_ssr"><i class="icon icon-lg">flight_takeoff</i>&nbsp;SS/SSR</a>
                                         </li>
                                     </ul>
                                 </nav>
@@ -337,36 +330,6 @@
                                                     <li class="active">
                                                         <a class="" data-toggle="tab" href="#all_ssr_windows">
                                                             <i class="icon icon-lg">desktop_windows</i>&nbsp;Windows
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="" data-toggle="tab" href="#all_ssr_mac">
-                                                            <i class="icon icon-lg">laptop_mac</i>&nbsp;MacOS
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="" data-toggle="tab" href="#all_ssr_linux">
-                                                            <i class="icon icon-lg">dvr</i>&nbsp;Linux（GUI）
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="" data-toggle="tab" href="#all_ssr_ios">
-                                                            <i class="icon icon-lg">phone_iphone</i>&nbsp;iOS
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="" data-toggle="tab" href="#all_ssr_android">
-                                                            <i class="icon icon-lg">android</i>&nbsp;Android
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="" data-toggle="tab" href="#all_ssr_router">
-                                                            <i class="icon icon-lg">router</i>&nbsp;路由器
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="" data-toggle="tab" href="#all_ssr_game">
-                                                            <i class="icon icon-lg">videogame_asset</i>&nbsp;游戏端
                                                         </a>
                                                     </li>
                                                     <li>
@@ -854,94 +817,7 @@
                                                 {/if}
                                             </div>
                                         </div>
-
-                                        <div class="tab-pane fade {if !$ssr_prefer}active in{/if}" id="all_ss">
-                                            <nav class="tab-nav margin-top-no">
-                                                <ul class="nav nav-list">
-                                                    <li class="active">
-                                                        <a class="" data-toggle="tab" href="#all_ss_windows">
-                                                            <i class="icon icon-lg">desktop_windows</i>&nbsp;Windows
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="" data-toggle="tab" href="#all_ss_mac">
-                                                            <i class="icon icon-lg">laptop_mac</i>&nbsp;MacOS
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="" data-toggle="tab" href="#all_ss_ios">
-                                                            <i class="icon icon-lg">laptop_mac</i>&nbsp;iOS
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="" data-toggle="tab" href="#all_ss_android">
-                                                            <i class="icon icon-lg">android</i>&nbsp;Android
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="" data-toggle="tab" href="#all_ss_router">
-                                                            <i class="icon icon-lg">router</i>&nbsp;路由器
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="" data-toggle="tab" href="#all_ss_info">
-                                                            <i class="icon icon-lg">info_outline</i>&nbsp;连接信息
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </nav>
-                                            <div class="tab-pane fade" id="all_ss_info">
-                                                {$user = URL::getSSConnectInfo($pre_user)}
-                                                {$ss_url_all_mu = URL::getAllUrl($pre_user, 1, 1)}
-                                                {$ss_url_all = URL::getAllUrl($pre_user, 0, 2)}
-                                                {$ssd_url_all =URL::getAllSSDUrl($user)}
-
-                                                {if URL::SSCanConnect($user)}
-                                                    <dl class="dl-horizontal">
-                                                        <p>各个节点的地址请到节点列表查看！</p>
-                                                        <p>
-                                                            <dt>端口</dt>
-                                                        <dd>{$user->port}</dd>
-                                                        </p>
-                                                        <p>
-                                                            <dt>密码</dt>
-                                                        <dd>{$user->passwd}</dd>
-                                                        </p>
-                                                        <p>
-                                                            <dt>自定义加密</dt>
-                                                        <dd>{$user->method}</dd>
-                                                        </p>
-                                                        <p>
-                                                            <dt>自定义混淆</dt>
-                                                        <dd>{$user->obfs}</dd>
-                                                        </p>
-                                                        <p>
-                                                            <dt>自定义混淆参数</dt>
-                                                        <dd>{$user->obfs_param}</dd>
-                                                        </p>
-                                                    </dl>
-                                                {else}
-                                                    <p>您好，您目前的 加密方式，混淆，或者协议设置在 SS 客户端下无法连接。请您选用 SSR 客户端来连接，或者到 资料编辑
-                                                        页面修改后再来查看此处</p>
-                                                    <p>同时, Shadowsocks 单端口多用户的连接不受您设置的影响,您可以在此使用相应的客户端进行连接~</p>
-                                                {/if}
-                                            </div>
-                                            <div class="tab-pane fade active in" id="all_ss_windows">
-                                                <p><span class="icon icon-lg text-white">filter_1</span><a
-                                                            href="/ssr-download/ssd-win.7z" class="btn-dl"><i
-                                                                class="material-icons">save_alt</i> 点击下载 SSD</a>，解压至任意磁盘并运行
-                                                </p>
-                                                <p><span class="icon icon-lg text-white">filter_2</span>
-                                                    任务栏右下角右键纸飞机图标->服务器订阅->SSD服务器订阅设置，将订阅链接设置为下面的地址，确定之后再更新SSD服务器订阅</p>
-                                                <p><span class="icon icon-lg text-white">filter_3</span>
-                                                    然后选择一个合适的服务器，代理规则选“绕过局域网和大陆”，然后即可上网</p>
-                                                <p><span class="icon icon-lg text-white">filter_4</span> 备用导入节点方法：<a
-                                                            class="copy-text btn-dl"
-                                                            data-clipboard-text='{$ssd_url_all}'><i
-                                                                class="material-icons icon-sm">how_to_vote</i>点我复制链接</a>，然后右键小飞机->从剪贴板复制地址
-                                                </p>
-                                                <div><span class="icon icon-lg text-white">flash_auto</span> 节点订阅地址：
-                                                </div>
+                                        
                                                 <div class="float-clear"><input type="text"
                                                                                 class="input form-control form-control-monospace cust-link col-xx-12 col-sm-8 col-lg-7"
                                                                                 name="input1" readonly
@@ -1149,7 +1025,7 @@
         var levelExpireDays = Math.floor(b / (24 * 3600 * 1000));
         var accountExpireDays = Math.floor(c / (24 * 3600 * 1000));
         if (levelExpireDays < 0 || levelExpireDays > 315360000000) {
-            document.getElementById('days-level-expire').innerHTML = "无限期";
+            document.getElementById('days-level-expire').innerHTML = "無期限";
             for (var i = 0; i < document.getElementsByClassName('label-level-expire').length; i += 1) {
                 document.getElementsByClassName('label-level-expire')[i].style.display = 'none';
             }
@@ -1157,7 +1033,7 @@
             document.getElementById('days-level-expire').innerHTML = levelExpireDays;
         }
         if (accountExpireDays < 0 || accountExpireDays > 315360000000) {
-            document.getElementById('days-account-expire').innerHTML = "无限期";
+            document.getElementById('days-account-expire').innerHTML = "無期限";
             for (var i = 0; i < document.getElementsByClassName('label-account-expire').length; i += 1) {
                 document.getElementsByClassName('label-account-expire')[i].style.display = 'none';
             }
