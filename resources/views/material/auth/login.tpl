@@ -7,30 +7,30 @@
             <div class="auth-main auth-row auth-col-one">
                 <div class="auth-top auth-row">
                     <a class="boardtop-left" href="/">
-                        <div>首 页</div>
+                        <div>トップ</div>
                     </a>
                     <div class="auth-logo">
                         <img src="/images/authlogo.jpg">
                     </div>
                     <a href="/auth/register" class="boardtop-right">
-                        <div>注 册</div>
+                        <div>新規登録</div>
                     </a>
                 </div>
                 <div class="auth-row">
                     <div class="form-group-label auth-row row-login">
-                        <label class="floating-label" for="email">邮箱</label>
+                        <label class="floating-label" for="email">メールアドレス</label>
                         <input class="form-control maxwidth-auth" id="email" type="text" name="Email">
                     </div>
                 </div>
                 <div class="auth-row">
                     <div class="form-group-label auth-row row-login">
-                        <label class="floating-label" for="passwd">密码</label>
+                        <label class="floating-label" for="passwd">パスワード</label>
                         <input class="form-control maxwidth-auth" id="passwd" type="password" name="Password">
                     </div>
                 </div>
                 <div class="auth-row">
                     <div class="form-group-label auth-row row-login">
-                        <label class="floating-label" for="code">两步验证码（未设置请忽略）</label>
+                        <label class="floating-label" for="code">二段階認証コード(設定している方のみ)</label>
                         <input class="form-control maxwidth-auth" id="code" type="text" name="Code">
                     </div>
                 </div>
@@ -50,7 +50,7 @@
 
                 <div class="btn-auth auth-row">
                     <button id="login" type="submit" class="btn btn-block btn-brand waves-attach waves-light">
-                        确认登录
+                        ログイン
                     </button>
                 </div>
                 <div class="auth-help auth-row">
@@ -58,13 +58,13 @@
                         <div class="checkbox checkbox-adv">
                             <label for="remember_me">
                                 <input class="access-hide" value="week" id="remember_me" name="remember_me"
-                                       type="checkbox">记住我</input>
+                                       type="checkbox">ログイン状態を記憶する</input>
                                 <span class="checkbox-circle"></span>
                                 <span class="checkbox-circle-check"></span>
                                 <span class="checkbox-circle-icon icon">done</span>
                             </label>
                         </div>
-                        <a href="/password/reset">忘记密码？</a>
+                        <a href="/password/reset">パスワードを忘れた</a>
                     </div>
                 </div>
                 <div class="auth-bottom auth-row">
@@ -72,7 +72,7 @@
                         {if $config['enable_telegram'] == 'true'}
                             <span>Telegram</span>
                             <button class="btn" id="calltgauth"><i class="icon icon-lg">near_me</i></button>
-                            <span>快捷登录</span>
+                            <span>クイックログイン</span>
                         {else}
                             <button class="btn" style="cursor:unset;"></button>
                         {/if}
@@ -154,7 +154,7 @@
             {if $geetest_html != null}
             if (typeof validate === 'undefined' || !validate) {
                 $("#result").modal();
-                $$.getElementById('msg').innerHTML = '请滑动验证码来完成验证';
+                $$.getElementById('msg').innerHTML = 'reCAPTCHAの確認を完了させてください';
                 return;
             }
             {/if}
@@ -192,7 +192,7 @@
                 error: (jqXHR) => {
                     $("#msg-error").hide(10);
                     $("#msg-error").show(100);
-                    $$.getElementById('msg').innerHTML = `发生错误：${
+                    $$.getElementById('msg').innerHTML = `エラーコード：${
                         jqXHR.status
                     }`;
                     document.getElementById("login").disabled = false;
@@ -262,13 +262,13 @@
                                 success: (data) => {
                                     if (data.ret) {
                                         $("#result").modal();
-                                        $$.getElementById('msg').innerHTML = '登录成功！';
+                                        $$.getElementById('msg').innerHTML = 'ログインに成功しました';
                                         window.setTimeout("location.href=/user/", {$config['jump_delay']});
                                     }
                                 },
                                 error: (jqXHR) => {
                                     $("#result").modal();
-                                    $$.getElementById('msg').innerHTML = `发生错误：${
+                                    $$.getElementById('msg').innerHTML = `エラーコード：${
                                             jqXHR.status
                                             }`;
                                 }
@@ -284,7 +284,7 @@
                     error: (jqXHR) => {
                         if (jqXHR.status !== 200 && jqXHR.status !== 0) {
                             $("#result").modal();
-                            $$.getElementById('msg').innerHTML = `发生错误：${
+                            $$.getElementById('msg').innerHTML = `エラーコード：${
                                     jqXHR.status
                                     }`;
                         }
