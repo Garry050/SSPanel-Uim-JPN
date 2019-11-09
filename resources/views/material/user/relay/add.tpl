@@ -2,7 +2,7 @@
 
 <main class="content">
     <div class="content-header ui-content-header">
-        <div class="container"><h1 class="content-heading">添加中转规则</h1></div>
+        <div class="container"><h1 class="content-heading">サーバー中継設定を追加する</h1></div>
     </div>
     <div class="container">
         <div class="col-lg-12 col-sm-12">
@@ -13,10 +13,10 @@
                             <div class="card-inner">
 
                                 <div class="form-group form-group-label control-highlight-custom dropdown">
-                                    <label class="floating-label" for="source_node">起源节点</label>
+                                    <label class="floating-label" for="source_node">中継元のサーバー</label>
                                     <button id="source_node" class="form-control maxwidth-edit" name="source_node"
                                             data-toggle="dropdown">
-                                        请选择起源节点
+                                        中継元のサーバーを選択する
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="source_node">
                                         {foreach $source_nodes as $source_node}
@@ -29,15 +29,15 @@
                                 </div>
 
                                 <div class="form-group form-group-label control-highlight-custom dropdown">
-                                    <label class="floating-label" for="dist_node">目标节点</label>
+                                    <label class="floating-label" for="dist_node">中継先のサーバー</label>
                                     <button id="dist_node" class="form-control maxwidth-edit" name="dist_node"
                                             data-toggle="dropdown">
-                                        请选择目标节点
+                                        中継先のサーバーを選択する
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="dist_node">
                                         <li>
                                             <a href="#" class="dropdown-option" onclick="return false;" val="-1"
-                                               data="dist_node">不进行中转</a>
+                                               data="dist_node">中継させない</a>
                                         </li>
 
                                         {foreach $dist_nodes as $dist_node}
@@ -50,10 +50,10 @@
                                 </div>
 
                                 <div class="form-group form-group-label control-highlight-custom dropdown">
-                                    <label class="floating-label" for="port">端口</label>
+                                    <label class="floating-label" for="port">ポート番号</label>
                                     <button id="port" class="form-control maxwidth-edit" name="port"
                                             data-toggle="dropdown">
-                                        请选择端口
+                                        ポート番号を選択してください
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="port">
                                         {foreach $ports as $port}
@@ -64,7 +64,7 @@
                                 </div>
 
                                 <div class="form-group form-group-label">
-                                    <label class="floating-label" for="priority">优先级</label>
+                                    <label class="floating-label" for="priority">優先順位</label>
                                     <input class="form-control maxwidth-edit" id="priority" name="priority" type="text"
                                            value="0">
                                 </div>
@@ -80,7 +80,7 @@
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-md-10 col-md-push-1">
-                                            <button id="submit" type="submit" class="btn btn-block btn-brand">添加
+                                            <button id="submit" type="submit" class="btn btn-block btn-brand">追加
                                             </button>
                                         </div>
                                     </div>

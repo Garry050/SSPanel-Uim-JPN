@@ -4,7 +4,7 @@
 <main class="content">
     <div class="content-header ui-content-header">
         <div class="container">
-            <h1 class="content-heading"> 编辑规则 #{$rule->id}</h1>
+            <h1 class="content-heading"> サーバー中継設定の編集 #{$rule->id}</h1>
         </div>
     </div>
     <div class="container">
@@ -15,7 +15,7 @@
                         <div class="card-main">
                             <div class="card-inner">
                                 <div class="form-group form-group-label control-highlight-custom dropdown">
-                                    <label class="floating-label" for="source_node">起源节点</label>
+                                    <label class="floating-label" for="source_node">中継元のサーバー</label>
                                     <button id="source_node" class="form-control maxwidth-edit" name="source_node"
                                             data-toggle="dropdown" value="{$rule->source_node_id}">
                                         {foreach $source_nodes as $source_node}
@@ -34,7 +34,7 @@
                                 </div>
 
                                 <div class="form-group form-group-label control-highlight-custom dropdown">
-                                    <label class="floating-label" for="dist_node">目标节点</label>
+                                    <label class="floating-label" for="dist_node">中継先のサーバー</label>
                                     <button id="dist_node" class="form-control maxwidth-edit" name="dist_node"
                                             data-toggle="dropdown" value="{$rule->dist_node_id}">
                                         {foreach $dist_nodes as $dist_node}
@@ -43,7 +43,7 @@
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="dist_node">
                                         <li><a href="#" class="dropdown-option" onclick="return false;" val="-1"
-                                               data="dist_node">不进行中转</a></li>
+                                               data="dist_node">中継させない</a></li>
 
                                         {foreach $dist_nodes as $dist_node}
                                             <li><a href="#" class="dropdown-option" onclick="return false;"
@@ -53,7 +53,7 @@
                                 </div>
 
                                 <div class="form-group form-group-label control-highlight-custom dropdown">
-                                    <label class="floating-label" for="port">端口</label>
+                                    <label class="floating-label" for="port">ポート番号</label>
                                     <button id="port" class="form-control maxwidth-edit" name="port"
                                             data-toggle="dropdown" value="{$rule->port}">
                                         {foreach $ports as $port}
@@ -70,7 +70,7 @@
 
 
                                 <div class="form-group form-group-label">
-                                    <label class="floating-label" for="priority">优先级</label>
+                                    <label class="floating-label" for="priority">優先順位</label>
                                     <input class="form-control maxwidth-edit" id="priority" name="priority" type="text"
                                            value="{$rule->priority}">
                                 </div>
@@ -88,7 +88,7 @@
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-md-10 col-md-push-1">
-                                            <button id="submit" type="submit" class="btn btn-block btn-brand">修改
+                                            <button id="submit" type="submit" class="btn btn-block btn-brand">編集完了
                                             </button>
                                         </div>
                                     </div>
