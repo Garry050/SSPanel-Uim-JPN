@@ -4,7 +4,7 @@
 <main class="content">
     <div class="content-header ui-content-header">
         <div class="container">
-            <h1 class="content-heading">工单</h1>
+            <h1 class="content-heading">問い合わせ</h1>
         </div>
     </div>
     <div class="container">
@@ -14,7 +14,7 @@
                 <div class="card">
                     <div class="card-main">
                         <div class="card-inner">
-                            <p>有任何问题请直接右下角的+号提交新问题</p>
+                            <p>問題があったり質問したい場合は右下の+ボタンから送信してください</p>
                         </div>
                     </div>
                 </div>
@@ -29,9 +29,9 @@
                                         <tr>
 
                                             <!--  <th>ID</th>   -->
-                                            <th>发起日期</th>
-                                            <th>工单标题</th>
-                                            <th>工单状态</th>
+                                            <th>日付</th>
+                                            <th>タイトル</th>
+                                            <th>状態</th>
                                             <th>操作</th>
                                         </tr>
                                         {foreach $tickets as $ticket}
@@ -41,13 +41,13 @@
                                                 <td>{$ticket->datetime()}</td>
                                                 <td>{$ticket->title}</td>
                                                 {if $ticket->status==1}
-                                                    <td>工单服务中</td>
+                                                    <td>進行中</td>
                                                 {else}
-                                                    <td>工单已结束</td>
+                                                    <td>終了済</td>
                                                 {/if}
                                                 <td>
                                                     <a class="btn btn-brand"
-                                                       href="/user/ticket/{$ticket->id}/view">查看</a>
+                                                       href="/user/ticket/{$ticket->id}/view">表示</a>
                                                 </td>
                                             </tr>
                                         {/foreach}

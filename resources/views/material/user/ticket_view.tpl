@@ -5,7 +5,7 @@
 
     <div class="content-header ui-content-header">
         <div class="container">
-            <h1 class="content-heading">查看工单</h1>
+            <h1 class="content-heading">お問い合わせの内容</h1>
         </div>
     </div>
     <div class="container">
@@ -34,9 +34,9 @@
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-md-10">
-                                        <button id="submit" type="submit" class="btn btn-brand">添加</button>
-                                        <button id="close" type="submit" class="btn btn-brand-accent">添加并关闭</button>
-                                        <button id="close_directly" type="submit" class="btn btn-brand-accent waves-attach waves-light">直接关闭</button>
+                                        <button id="submit" type="submit" class="btn btn-brand">返信</button>
+                                        <button id="close" type="submit" class="btn btn-brand-accent">返信して終了済にする</button>
+                                        <button id="close_directly" type="submit" class="btn btn-brand-accent waves-attach waves-light">すぐに終了済にする</button>
                                     </div>
                                 </div>
                             </div>
@@ -83,7 +83,7 @@
     $(document).ready(function () {
         function submit() {
             $("#result").modal();
-            $$.getElementById('msg').innerHTML = '正在提交';
+            $$.getElementById('msg').innerHTML = '送信中…';
             $.ajax({
                 type: "PUT",
                 url: "/user/ticket/{$id}",
@@ -106,7 +106,7 @@
                 error: (jqXHR) => {
                     $("#msg-error").hide(10);
                     $("#msg-error").show(100);
-                    $$.getElementById('msg-error-p').innerHTML = `发生错误：${
+                    $$.getElementById('msg-error-p').innerHTML = `エラーコード：${
                             jqXHR.status
                             }`;
                 }
@@ -126,13 +126,13 @@
         $("#close_directly").click(function () {
             status = 0;
             $("#result").modal();
-            $$.getElementById('msg').innerHTML = '正在提交';
+            $$.getElementById('msg').innerHTML = '送信中…';
             $.ajax({
                 type: "PUT",
                 url: "/user/ticket/{$id}",
                 dataType: "json",
                 data: {
-                    content: '这条工单已被关闭',
+                    content: 'このお問い合わせは終了しています',
                     status
                 },
                 success: (data) => {
@@ -148,7 +148,7 @@
                 error: (jqXHR) => {
                     $("#msg-error").hide(10);
                     $("#msg-error").show(100);
-                    $$.getElementById('msg-error-p').innerHTML = `发生错误：${
+                    $$.getElementById('msg-error-p').innerHTML = `エラーコード：${
                             jqXHR.status
                             }`;
                 }

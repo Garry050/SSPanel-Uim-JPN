@@ -15,7 +15,7 @@ table tr td:first-child {
 
     <div class="content-header ui-content-header">
         <div class="container">
-            <h1 class="content-heading">用户中心</h1>
+            <h1 class="content-heading">トップ画面</h1>
         </div>
     </div>
     <div class="container">
@@ -27,14 +27,14 @@ table tr td:first-child {
                         <div class="user-info-main">
                             <div class="nodemain">
                                 <div class="nodehead node-flex">
-                                    <div class="nodename">帐号等级</div>
+                                    <div class="nodename">ユーザーランク</div>
                                 </div>
                                 <div class="nodemiddle node-flex">
                                     <div class="nodetype">
                                         {if $user->class!=0}
                                             <dd>VIP {$user->class}</dd>
                                         {else}
-                                            <dd>普通用户</dd>
+                                            <dd>通常ユーザー</dd>
                                         {/if}
                                     </div>
                                 </div>
@@ -50,11 +50,11 @@ table tr td:first-child {
                         <div class="user-info-bottom">
                             <div class="nodeinfo node-flex">
                                 {if $user->class!=0}
-                                    <span><i class="icon icon-md">add_circle</i>到期流量清空</span>
+                                    <span><i class="icon icon-md">add_circle</i>通信量を追加する</span>
                                 {else}
-                                    <span><i class="icon icon-md">add_circle</i>升级解锁 VIP 节点</span>
+                                    <span><i class="icon icon-md">add_circle</i>VIPを購入して利用可能なサーバーを追加する</span>
                                 {/if}
-                                <a href="/user/shop" class="card-tag tag-orange">商店</a>
+                                <a href="/user/shop" class="card-tag tag-orange">ストア</a>
                             </div>
                         </div>
                     </div>
@@ -64,11 +64,11 @@ table tr td:first-child {
                         <div class="user-info-main">
                             <div class="nodemain">
                                 <div class="nodehead node-flex">
-                                    <div class="nodename">余额</div>
+                                    <div class="nodename">残高</div>
                                 </div>
                                 <div class="nodemiddle node-flex">
                                     <div class="nodetype">
-                                        {$user->money} CNY
+                                        {$user->money} 円
                                     </div>
                                 </div>
                                 <div class="nodemiddle node-flex">
@@ -78,8 +78,8 @@ table tr td:first-child {
                         </div>
                         <div class="user-info-bottom">
                             <div class="nodeinfo node-flex">
-                                <span><i class="icon icon-md">attach_money</i>到期账户自动删除</span>
-                                <a href="/user/code" class="card-tag tag-green">充值</a>
+                                <span><i class="icon icon-md">attach_money</i>残高をチャージする</span>
+                                <a href="/user/code" class="card-tag tag-green">チャージ</a>
                             </div>
                         </div>
                     </div>
@@ -89,14 +89,14 @@ table tr td:first-child {
                         <div class="user-info-main">
                             <div class="nodemain">
                                 <div class="nodehead node-flex">
-                                    <div class="nodename">在线设备数</div>
+                                    <div class="nodename">現在の接続数</div>
                                 </div>
                                 <div class="nodemiddle node-flex">
                                     <div class="nodetype">
                                         {if $user->node_connector!=0}
                                             <dd>{$user->online_ip_count()} / {$user->node_connector}</dd>
                                         {else}
-                                            <dd>{$user->online_ip_count()} / 不限制</dd>
+                                            <dd>{$user->online_ip_count()} / 無制限</dd>
                                         {/if}
                                     </div>
                                 </div>
@@ -111,7 +111,7 @@ table tr td:first-child {
                         </div>
                         <div class="user-info-bottom">
                             <div class="nodeinfo node-flex">
-                                <span><i class="icon icon-md">donut_large</i>在线设备/设备限制数</span>
+                                <span><i class="icon icon-md">donut_large</i>接続数/制限数</span>
                             </div>
                         </div>
                     </div>
@@ -121,14 +121,14 @@ table tr td:first-child {
                         <div class="user-info-main">
                             <div class="nodemain">
                                 <div class="nodehead node-flex">
-                                    <div class="nodename">端口速率</div>
+                                    <div class="nodename">回線速度</div>
                                 </div>
                                 <div class="nodemiddle node-flex">
                                     <div class="nodetype">
                                         {if $user->node_speedlimit!=0}
                                             <dd><code>{$user->node_speedlimit}</code>Mbps</dd>
                                         {else}
-                                            <dd>无限制</dd>
+                                            <dd>無制限</dd>
                                         {/if}
                                     </div>
                                 </div>
@@ -139,7 +139,7 @@ table tr td:first-child {
                         </div>
                         <div class="user-info-bottom">
                             <div class="nodeinfo node-flex">
-                                <span><i class="icon icon-md">signal_cellular_alt</i>账户最高下行网速</span>
+                                <span><i class="icon icon-md">signal_cellular_alt</i>サーバーで利用できる下り最大速度</span>
                             </div>
                         </div>
                     </div>
@@ -152,8 +152,55 @@ table tr td:first-child {
 
                     <div class="card">
                         <div class="card-main">
-                        <div class="card-inner margin-bottom-no">
-                            <p class="card-heading" style="margin-bottom: 0;"><i class="icon icon-md">account_circle</i>流量使用情况</p>
+                            <div class="card-inner">
+
+                                {*
+                                <div id="traffic_chart" style="height: 300px; width: 100%;"></div>
+
+                                <script src="/assets/js/canvasjs.min.js"> </script>
+                                <script type="text/javascript">
+                                    var chart = new CanvasJS.Chart("traffic_chart", {
+                                        theme: "light1",
+                                        title: {
+                                            text: "通信量の状況",
+                                            fontFamily: "Impact",
+                                            fontWeight: "normal"
+                                        },
+                                        legend: {
+                                            verticalAlign: "bottom",
+                                            horizontalAlign: "center"
+                                        },
+                                        data: [{
+                                            startAngle: -15,
+                                            indexLabelFontSize: 20,
+                                            indexLabelFontFamily: "Garamond",
+                                            indexLabelFontColor: "darkgrey",
+                                            indexLabelLineColor: "darkgrey",
+                                            indexLabelPlacement: "outside",
+                                            yValueFormatString: "##0.00\"%\"",
+                                            type: "pie",
+                                            showInLegend: true,
+                                            dataPoints: [
+                                                {if $user->transfer_enable != 0}
+                                                {
+                                                    y: {$user->last_day_t/$user->transfer_enable*100},label: "利用した通信量", legendText:"利用した通信量 {number_format($user->last_day_t/$user->transfer_enable*100,2)}% {$user->LastusedTraffic()}", indexLabel: "利用した通信量 {number_format($user->last_day_t/$user->transfer_enable*100,2)}% {$user->LastusedTraffic()}"
+                                                },
+                                                {
+                                                    y: {($user->u+$user->d-$user->last_day_t)/$user->transfer_enable*100},label: "今日利用した通信量", legendText:"今日利用した通信量 {number_format(($user->u+$user->d-$user->last_day_t)/$user->transfer_enable*100,2)}% {$user->TodayusedTraffic()}", indexLabel: "今日利用した通信量 {number_format(($user->u+$user->d-$user->last_day_t)/$user->transfer_enable*100,2)}% {$user->TodayusedTraffic()}"
+                                                },
+                                                {
+                                                    y: {($user->transfer_enable-($user->u+$user->d))/$user->transfer_enable*100},label: "残りの通信量", legendText:"残りの通信量 {number_format(($user->transfer_enable-($user->u+$user->d))/$user->transfer_enable*100,2)}% {$user->unusedTraffic()}", indexLabel: "残りの通信量 {number_format(($user->transfer_enable-($user->u+$user->d))/$user->transfer_enable*100,2)}% {$user->unusedTraffic()}"
+                                                }
+                                                {/if}
+                                            ]
+                                        }
+                                        ]
+                                    });
+
+                                    chart.render();
+                                </script>
+                                *}
+
                                 <div class="progressbar">
                                     <div class="before"></div>
                                     <div class="bar tuse color3"
@@ -161,7 +208,7 @@ table tr td:first-child {
                                     <div class="label-flex">
                                         <div class="label la-top">
                                             <div class="bar ard color3"></div>
-                                            <span class="traffic-info">今日已用</span>
+                                            <span class="traffic-info">今日利用した通信量</span>
                                             <code class="card-tag tag-red">{$user->TodayusedTraffic()}</code>
                                         </div>
                                     </div>
@@ -175,7 +222,7 @@ table tr td:first-child {
                                     <div class="label-flex">
                                         <div class="label la-top">
                                             <div class="bar ard color2"><span></span></div>
-                                            <span class="traffic-info">过去已用</span>
+                                            <span class="traffic-info">利用した通信量</span>
                                             <code class="card-tag tag-orange">{$user->LastusedTraffic()}</code>
                                         </div>
                                     </div>
@@ -189,7 +236,7 @@ table tr td:first-child {
                                     <div class="label-flex">
                                         <div class="label la-top">
                                             <div class="bar ard color"><span></span></div>
-                                            <span class="traffic-info">剩余流量</span>
+                                            <span class="traffic-info">残りの通信量</span>
                                             <code class="card-tag tag-green" id="remain">{$user->unusedTraffic()}</code>
                                         </div>
                                     </div>
@@ -198,52 +245,53 @@ table tr td:first-child {
                             </div>
 
                             <div class="card-inner margin-bottom-no">
-                                <p class="card-heading"><i class="icon icon-md">account_circle</i>签到</p>
+                                <p class="card-heading"><i class="icon icon-md">account_circle</i>アカウント状態</p>
+                                <dl class="dl-horizontal">
 
-                                    <p>上次签到时间：{$user->lastCheckInTime()}</p>
 
-                                    <p id="checkin-msg"></p>
-
-                                    {if $geetest_html != null}
-                                        <div id="popup-captcha"></div>
-                                    {/if}
-                                    {if $recaptcha_sitekey != null && $user->isAbleToCheckin()}
-                                        <div class="g-recaptcha" data-sitekey="{$recaptcha_sitekey}"></div>
+                                    <dt>ランクの有効期限</dt>
+                                    {if $user->class_expire!="1989-06-04 00:05:00"}
+                                    <dd><i class="icon icon-md">event</i>&nbsp;{$user->class_expire}</dd>
+                                    {else}
+                                    <dd><i class="icon icon-md">event</i>&nbsp;無し</dd>
                                     {/if}
 
-                                    <div class="card-action">
-                                        <div class="usercheck pull-left">
-                                            {if $user->isAbleToCheckin() }
-                                                <div id="checkin-btn">
-                                                    <button id="checkin" class="btn btn-brand btn-flat"><span
-                                                                class="icon">check</span>&nbsp;点我签到&nbsp;
-                                                        <div><span class="icon">screen_rotation</span>&nbsp;或者摇动手机签到
-                                                        </div>
-                                                    </button>
-                                                </div>
-                                            {else}
-                                                <p><a class="btn btn-brand disabled btn-flat" href="#"><span
-                                                                class="icon">check</span>&nbsp;今日已签到</a></p>
-                                            {/if}
-                                        </div>
+                                    <dt>ランクが失効するまで</dt>
+                                    <i class="icon icon-md">event</i>
+                                    <span class="label-level-expire">残り</span>
+                                    <code><span id="days-level-expire"></span></code>
+                                    <span class="label-level-expire">日</span>
+
+                                    <dt>アカウントの有効期限</dt>
+                                    <dd><i class="icon icon-md">event</i>&nbsp;{$user->expire_in}</dd>
+
+                                    <dt>アカウントの失効するまで</dt>
+                                    <i class="icon icon-md">event</i>
+                                    <span class="label-account-expire">残り</span>
+                                    <code><span id="days-account-expire"></span></code>
+                                    <span class="label-account-expire">日</span>
+
+                                    <dt>最後の接続時刻</dt>
+                                    {if $user->lastSsTime()!="まだ接続したことがないようです"}
+                                    <dd><i class="icon icon-md">event</i>&nbsp;{$user->lastSsTime()}</dd>
+                                    {else}
+                                    <dd><i class="icon icon-md">event</i>&nbsp;まだ接続したことがないようです</dd>
+                                    {/if}
                                     </div>
-                                </dl>
-                            </div>
-
                         </div>
                     </div>
 
                     <div class="card">
                         <div class="card-main">
                             <div class="card-inner margin-bottom-no">
-                                <p class="card-heading"><i class="icon icon-md">notifications_active</i>公告栏</p>
+                                <p class="card-heading"><i class="icon icon-md">notifications_active</i>お知らせ</p>
                                 {if $ann != null}
                                     <p>{$ann->content}</p>
                                     <br/>
-                                    <strong>查看所有公告请<a href="/user/announcement">点击这里</a></strong>
+                                    <strong>全てのお知らせを見たい場合は<a href="/user/announcement">ここをクリック</a></strong>
                                 {/if}
                                 {if $config["enable_admin_contact"] == 'true'}
-                                    <p class="card-heading">管理员联系方式</p>
+                                    <p class="card-heading">管理人の連絡先</p>
                                     {if $config["admin_contact1"]!=null}
                                         <p>{$config["admin_contact1"]}</p>
                                     {/if}
@@ -266,20 +314,15 @@ table tr td:first-child {
                         <div class="card-main">
                             <div class="card-inner">
                                 <div class="cardbtn-edit">
-                                    <div class="card-heading"><i class="icon icon-md">phonelink</i> 快速添加节点</div>
-                                    <div class="reset-flex"><span>重置订阅链接</span><a class="reset-link btn btn-brand-accent btn-flat"><i class="icon">autorenew</i>&nbsp;</a></div>
+                                    <div class="card-heading"><i class="icon icon-md">phonelink</i>サブスクリプション</div>
+                                    <div class="reset-flex"><span>リンクを変更する</span><a
+                                                class="reset-link btn btn-brand-accent btn-flat"><i class="icon">autorenew</i>&nbsp;</a>
+                                    </div>
                                 </div>
                                 <nav class="tab-nav margin-top-no">
                                     <ul class="nav nav-list">
                                         <li {if $ssr_prefer}class="active"{/if}>
-                                            <a class="" data-toggle="tab" href="#all_ssr"><i class="icon icon-lg">airplanemode_active</i>&nbsp;SSR</a>
-                                        </li>
-                                        <li {if !$ssr_prefer}class="active"{/if}>
-                                            <a class="" data-toggle="tab" href="#all_ss"><i class="icon icon-lg">flight_takeoff</i>&nbsp;SS/SSD</a>
-                                        </li>
-
-                                        <li>
-                                            <a class="" data-toggle="tab" href="#all_v2ray"><i class="icon icon-lg">flight_land</i>&nbsp;V2RAY</a>
+                                            <a class="" data-toggle="tab" href="#all_ssr"><i class="icon icon-lg">flight_takeoff</i>&nbsp;SS/SSR</a>
                                         </li>
                                     </ul>
                                 </nav>
@@ -287,7 +330,22 @@ table tr td:first-child {
                                     <div class="tab-content">
                                         <div class="tab-pane fade {if $ssr_prefer}active in{/if}" id="all_ssr">
                                             {$pre_user = URL::cloneUser($user)}
+                                            <nav class="tab-nav margin-top-no">
+                                                <ul class="nav nav-list">
+                                                    <li class="active">
+                                                        <a class="" data-toggle="tab" href="#all_ssr_windows">
+                                                            <i class="icon icon-lg">desktop_windows</i>&nbsp;Windows
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="" data-toggle="tab" href="#all_ssr_info">
+                                                            <i class="icon icon-lg">info_outline</i>&nbsp;连接信息
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </nav>
 
+                                            <div class="tab-pane fade active in" id="all_ssr_windows">
                                                 {$user = URL::getSSRConnectInfo($pre_user)}
                                                 {$ssr_url_all = URL::getAllUrl($pre_user, 0, 0)}
                                                 {$ssr_url_all_mu = URL::getAllUrl($pre_user, 1, 0)}
@@ -366,45 +424,14 @@ table tr td:first-child {
                                                 {/if}
 
                                         </div>
-
-                                        <div class="tab-pane fade {if !$ssr_prefer}active in{/if}" id="all_ss">
-                                                {$user = URL::getSSConnectInfo($pre_user)}
-                                                {$ss_url_all_mu = URL::getAllUrl($pre_user, 1, 1)}
-                                                {$ss_url_all = URL::getAllUrl($pre_user, 0, 2)}
-                                                {$ssd_url_all =URL::getAllSSDUrl($user)}
-
-                                                {if URL::SSCanConnect($user)}
-                                                <table class="table">
-                                                    <tbody>
-                                                        <tr>
-                                                            <td><strong>端口</strong></td>
-                                                            <td>{$user->port}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td><strong>密码</strong></td>
-                                                            <td>{$user->passwd}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td><strong>自定义加密</strong></td>
-                                                            <td>{$user->method}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td><strong>自定义混淆</strong></td>
-                                                            <td>{$user->obfs}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td><strong>自定义混淆参数</strong></td>
-                                                            <td>{$user->obfs_param}</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                                <br>
-                                                <div>
-                                                    <span class="icon icon-lg text-white">flash_auto</span> SSD 节点订阅地址
-                                                </div>
-                                                <div class="float-clear">
-                                                    <input type="text" class="input form-control form-control-monospace cust-link col-xx-12 col-sm-8 col-lg-7" name="input1" readonly value="{$subUrl}{$ssr_sub_token}?mu=3" readonly="true">
-                                                    <button class="copy-text btn btn-subscription col-xx-12 col-sm-3 col-lg-2" type="button" data-clipboard-text="{$subUrl}{$ssr_sub_token}?mu=3">点击复制
+                                                <div class="float-clear"><input type="text"
+                                                                                class="input form-control form-control-monospace cust-link col-xx-12 col-sm-8 col-lg-7"
+                                                                                name="input1" readonly
+                                                                                value="{$subUrl}{$ssr_sub_token}?mu=3"
+                                                                                readonly="true">
+                                                    <button class="copy-text btn btn-subscription col-xx-12 col-sm-3 col-lg-2"
+                                                            type="button"
+                                                            data-clipboard-text="{$subUrl}{$ssr_sub_token}?mu=3">点击复制
                                                     </button>
                                                 </div>
 
@@ -417,110 +444,7 @@ table tr td:first-child {
                                                     <p>同时, Shadowsocks 单端口多用户的连接不受您设置的影响,您可以在此使用相应的客户端进行连接~</p>
                                                 {/if}
                                         </div>
-
-                                        <div class="tab-pane fade" id="all_v2ray">
-
-                                                {$v2_url_all = URL::getAllVMessUrl($user)}
-                                                
-
-                                                <div><span class="icon icon-lg text-white">flash_auto</span> 订阅地址：</div>
-                                                <div class="float-clear">
-                                                    <input type="text" class="input form-control form-control-monospace cust-link col-xx-12 col-sm-8 col-lg-7" name="input1" value="{$subUrl}{$ssr_sub_token}?mu=2" readonly="true"/>
-                                                    <button class="copy-text btn btn-subscription col-xx-12 col-sm-3 col-lg-2" type="button" data-clipboard-text="{$subUrl}{$ssr_sub_token}?mu=2">点击复制</button>
-                                                </div>
-                                                <br>
-                                                <button class="copy-text btn btn-subscription" type="button" data-clipboard-text="{$v2_url_all}">点击复制全部 VMess 链接</button>
-
                                         </div>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <div class="card-main">
-                            <div class="card-inner margin-bottom-no">
-                                <div class="card-heading"><i class="icon icon-md">phonelink</i> 客户端下载</div>
-
-                                <nav class="tab-nav margin-top-no">
-                                    <ul class="nav nav-list">
-                                        <li {if $ssr_prefer}class="active"{/if}>
-                                            <a class="" data-toggle="tab" href="#all_ssr_client"><i class="icon icon-lg">airplanemode_active</i>&nbsp;SSR</a>
-                                        </li>
-                                        <li {if !$ssr_prefer}class="active"{/if}>
-                                            <a class="" data-toggle="tab" href="#all_ss_client"><i class="icon icon-lg">flight_takeoff</i>&nbsp;SS/SSD</a>
-                                        </li>
-                                        <li>
-                                            <a class="" data-toggle="tab" href="#all_v2ray_client"><i class="icon icon-lg">flight_land</i>&nbsp;V2RAY</a>
-                                        </li>
-
-                                        {if $display_ios_class>=0}
-                                        <li>
-                                            <a class="" data-toggle="tab" href="#all_appid_client"><i class="icon icon-lg">phone_iphone</i>&nbsp;iOS 公共账号</a>
-                                        </li>
-                                        {/if}
-                                    </ul>
-                                </nav>
-                                <div class="card-inner">
-                                    <div class="tab-content">
-                                        <div class="tab-pane fade {if $ssr_prefer}active in{/if}" id="all_ssr_client">
-                                            <p><i class="icon icon-lg">laptop_windows</i> Windows：下载 <a href="/ssr-download/ssr-win.7z" target="_blank">ShadowsocksRR Windows</a> 或 <a href="/ssr-download/SSTap.7z" target="_blank">SSTap</a></p>
-                                            <p><i class="icon icon-lg">laptop_mac</i> macOS：<a href="/ssr-download/ssr-mac.dmg" target="_blank">下载 ShadowsocksX-NG-R8</a></p>
-                                            <p><i class="icon icon-lg">laptop_windows</i> Linux（GUI）：<a href="/ssr-download/ssr-linux.AppImage" target="_blank">下载 Electron SSR</a></p>
-                                            <p><i class="icon icon-lg">android</i> Android：下载 <a href="/ssr-download/ssrr-android.apk">SSRR</a> 或 <a href="/ssr-download/ssr-android.apk">SSR</a></p>
-                                            <p><i class="icon icon-lg">phone_iphone</i> iOS：可以使用 Shadowrocket、Quantumult、Potatso 或 Potatso Lite</p>
-                                            <p><i class="icon icon-lg">router</i> Koolshare 固件路由器/软路由：前往 <a href="https://github.com/hq450/fancyss_history_package" target="_blank">FancySS 下载页面</a></p>
-                                        </div>
-                                        <div class="tab-pane fade {if !$ssr_prefer}active in{/if}" id="all_ss_client">
-                                            <p><i class="icon icon-lg">laptop_windows</i> Windows：下载 <a href="/ssr-download/ssd-win.7z" target="_blank">SSD Windows</a>，<a href="/ssr-download/ss-win.zip" target="_blank">Shadowsocks Windows</a> 或 <a href="/ssr-download/SSTap.7z" target="_blank">SSTap</a></p>
-                                            <p><i class="icon icon-lg">laptop_mac</i> macOS：<a href="/ssr-download/ss-mac.zip" target="_blank">下载 ShadowsocksX-NG</a></p>
-                                            <p><i class="icon icon-lg">laptop_windows</i> Linux（GUI）：<a href="/ssr-download/ssr-linux.AppImage" target="_blank">下载 Electron SSR</a></p>
-                                            <p><i class="icon icon-lg">android</i> Android：下载 <a href="/ssr-download/ss-android.apk">Shadowsocks Android</a> 或 <a href="/ssr-download/ssd-android.apk">SSD Android</a>。如果需要启用混淆还需要下载 <a href="/ssr-download/ss-android-obfs.apk">Simple-Obfs 混淆插件</a>。</p>
-                                            <p><i class="icon icon-lg">phone_iphone</i> iOS：可以使用 Shadowrocket、Quantumult、Potatso 或 Potatso Lite</p>
-                                            <p><i class="icon icon-lg">router</i> Koolshare 固件路由器/软路由：前往 <a href="https://github.com/hq450/fancyss_history_package" target="_blank">FancySS 下载页面</a></p>
-                                        </div>
-                                        <div class="tab-pane fade" id="all_v2ray_client">
-                                            <p><i class="icon icon-lg">laptop_windows</i> Windows：下载 <a href="/ssr-download/v2rayn.zip" target="_blank">V2RayN</a></p>
-                                            <p><i class="icon icon-lg">laptop_mac</i> macOS：请前往 <a href="https://github.com/yanue/V2rayU">V2RayU 页面</a> 下载</p>
-                                            <p><i class="icon icon-lg">android</i> Android：下载 <a href="/ssr-download/ss-android.apk">V2RayNG</a></p>
-                                            <p><i class="icon icon-lg">phone_iphone</i> iOS：可以使用 Shadowrocket</p>
-                                            <p><i class="icon icon-lg">router</i> Koolshare 固件路由器/软路由：前往 <a href="https://github.com/hq450/fancyss_history_package/tree/master/fancyss_X64" target="_blank">FancySS 历史下载页面</a> 下载 v2ray 插件</p>
-                                        </div>
-
-                                        {if $display_ios_class>=0}
-                                        <div class="tab-pane fade" id="all_appid_client">
-                                            {if $user->class>=$display_ios_class && $user->get_top_up()>=$display_ios_topup}
-                                                <div>
-                                                    <span class="icon icon-lg text-white">account_box</span>本站iOS账户：
-                                                </div>
-                                                <div class="float-clear">
-                                                    <input type="text" class="input form-control form-control-monospace cust-link col-xx-12 col-sm-8 col-lg-7" name="input1" readonly value="{$ios_account}" readonly="true">
-                                                    <button class="copy-text btn btn-subscription col-xx-12 col-sm-3 col-lg-2" type="button" data-clipboard-text="{$ios_account}">点击复制</button>
-                                                    <br>
-                                                </div>
-
-                                                <div>
-                                                    <span class="icon icon-lg text-white">lock</span> 本站iOS密码：
-                                                </div>
-                                                <div class="float-clear">
-                                                    <input type="text" class="input form-control form-control-monospace cust-link col-xx-12 col-sm-8 col-lg-7" name="input1" readonly value="{$ios_password}" readonly="true">
-                                                    <button class="copy-text btn btn-subscription col-xx-12 col-sm-3 col-lg-2" type="button" data-clipboard-text="{$ios_password}">点击复制</button>
-                                                    <br>
-                                                </div>
-                                                <p>
-                                                    <span class="icon icon-lg text-white">error</span>
-                                                    <strong>禁止将账户分享给他人！</strong>
-                                                </p>
-                                                <br>
-                                            {else}
-                                                <p class="card-heading" align="center">
-                                                    <i class="icon icon-lg">visibility_off</i> <b>等级至少为<code>{$display_ios_class}</code>且累计充值大于<code>{$display_ios_topup}</code>时可见，如需升级请<a href="/user/shop">点击这里</a>升级套餐</b>
-                                                </p>
-                                            {/if}
-
                                         </div>
                                         {/if}
 
@@ -593,7 +517,7 @@ table tr td:first-child {
         var levelExpireDays = Math.floor(b / (24 * 3600 * 1000));
         var accountExpireDays = Math.floor(c / (24 * 3600 * 1000));
         if (levelExpireDays < 0 || levelExpireDays > 315360000000) {
-            document.getElementById('days-level-expire').innerHTML = "无限期";
+            document.getElementById('days-level-expire').innerHTML = "無期限";
             for (var i = 0; i < document.getElementsByClassName('label-level-expire').length; i += 1) {
                 document.getElementsByClassName('label-level-expire')[i].style.display = 'none';
             }
@@ -601,7 +525,7 @@ table tr td:first-child {
             document.getElementById('days-level-expire').innerHTML = levelExpireDays;
         }
         if (accountExpireDays < 0 || accountExpireDays > 315360000000) {
-            document.getElementById('days-account-expire').innerHTML = "无限期";
+            document.getElementById('days-account-expire').innerHTML = "無期限";
             for (var i = 0; i < document.getElementsByClassName('label-account-expire').length; i += 1) {
                 document.getElementsByClassName('label-account-expire')[i].style.display = 'none';
             }

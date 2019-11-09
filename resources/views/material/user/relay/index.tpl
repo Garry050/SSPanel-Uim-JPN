@@ -4,7 +4,7 @@
 <main class="content">
     <div class="content-header ui-content-header">
         <div class="container">
-            <h1 class="content-heading">中转规则</h1>
+            <h1 class="content-heading">サーバー中継設定</h1>
         </div>
     </div>
     <div class="container">
@@ -14,10 +14,10 @@
                 <div class="card">
                     <div class="card-main">
                         <div class="card-inner">
-                            <p>中转规则一般由中国中转至其他国外节点</p>
-                            <p>请设置端口号为您自己的端口</p>
-                            <p>优先级越大，代表其在多个符合条件的规则并存时会被优先采用，当优先级一致时，先添加的规则会被采用。</p>
-                            <p>节点不设置中转时，这个节点就可以当作一个普通的节点来做代理使用。</p>
+                            <p>サーバー中継設定は通常日本国内から海外へ転送します。</p>
+                            <p>ポート番号を自身のポート番号に設定します。</p>
+                            <p>優先順位の値が高いほど、複数の適格なルールが共存する場合に使用されます。優先順位が同じ場合、最初に追加された設定が採用されます。</p>
+                            <p>サーバーを中継させない設定にした場合、そのサーバーは通常のサーバーとして使用できるようになります。</p>
                         </div>
                     </div>
                 </div>
@@ -28,10 +28,10 @@
                             <nav class="tab-nav">
                                 <ul class="nav nav-justified">
                                     <li class="active">
-                                        <a class="" data-toggle="tab" href="#rule_table">规则表</a>
+                                        <a class="" data-toggle="tab" href="#rule_table">設定一覧</a>
                                     </li>
                                     <li>
-                                        <a class="" data-toggle="tab" href="#link_table">链路表</a>
+                                        <a class="" data-toggle="tab" href="#link_table">経路一覧</a>
                                     </li>
                                 </ul>
                             </nav>
@@ -43,35 +43,35 @@
                                     <table class="table table-user">
                                         <tr>
                                             <!--	<th>ID</th>   -->
-                                            <th>起源节点</th>
-                                            <th>目标节点</th>
-                                            <th>端口</th>
-                                            <th>优先级</th>
+                                            <th>中継元</th>
+                                            <th>中継先</th>
+                                            <th>ポート番号</th>
+                                            <th>優先順位</th>
                                             <th>操作</th>
                                         </tr>
                                         {foreach $rules as $rule}
                                             <tr>
                                                 <!--<td>#{$rule->id}</td>-->
                                                 {if $rule->source_node_id == 0}
-                                                    <td>所有节点</td>
+                                                    <td>有効なサーバー</td>
                                                 {else}
                                                     <td>{$rule->Source_Node()->name}</td>
                                                 {/if}
 
                                                 {if $rule->Dist_Node() == null}
-                                                    <td>不进行中转</td>
+                                                    <td>中継させない</td>
                                                 {else}
                                                     <td>{$rule->Dist_Node()->name}</td>
                                                 {/if}
 
-                                                <td>{if $rule->port == 0}所有端口{else}{$rule->port}{/if}</td>
+                                                <td>{if $rule->port == 0}有効なポート{else}{$rule->port}{/if}</td>
                                                 <td>{$rule->priority}</td>
                                                 <td>
                                                     <a class="btn btn-brand"
-                                                       {if $rule->user_id == 0}disabled{else}href="/user/relay/{$rule->id}/edit"{/if}>编辑</a>
+                                                       {if $rule->user_id == 0}disabled{else}href="/user/relay/{$rule->id}/edit"{/if}>編集</a>
                                                     <a class="btn btn-brand-accent" id="delete" value="{$rule->id}"
                                                        {if $rule->user_id == 0}disabled{else}href="javascript:void(0);"
-                                                       onClick="delete_modal_show('{$rule->id}')"{/if}>删除</a>
+                                                       onClick="delete_modal_show('{$rule->id}')"{/if}>削除</a>
                                                 </td>
                                             </tr>
                                         {/foreach}
@@ -83,11 +83,11 @@
                                 <div class="table-responsive table-user">
                                     <table class="table">
                                         <tr>
-                                            <th>端口</th>
-                                            <th>始发节点</th>
-                                            <th>终点节点</th>
-                                            <th>途径节点</th>
-                                            <th>状态</th>
+                                            <th>ポート番号</th>
+                                            <th>中継元サーバー</th>
+                                            <th>終点サーバー</th>
+                                            <th>中継先サーバー</th>
+                                            <th>状態</th>
                                         </tr>
 
                                         {foreach $pathset as $path}
@@ -120,10 +120,10 @@
                         <div class="modal-content">
                             <div class="modal-heading">
                                 <a class="modal-close" data-dismiss="modal">×</a>
-                                <h2 class="modal-title">确认要删除？</h2>
+                                <h2 class="modal-title">本当に削除しますか？</h2>
                             </div>
                             <div class="modal-inner">
-                                <p>请您确认</p>
+                                <p>確認</p>
                             </div>
                             <div class="modal-footer">
                                 <p class="text-right">

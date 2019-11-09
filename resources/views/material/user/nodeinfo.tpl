@@ -7,7 +7,7 @@
 <main class="content">
     <div class="content-header ui-content-header">
         <div class="container">
-            <h1 class="content-heading">节点信息</h1>
+            <h1 class="content-heading">サーバー情報</h1>
         </div>
     </div>
     <div class="container">
@@ -18,8 +18,8 @@
                         <div class="card">
                             <div class="card-main">
                                 <div class="card-inner">
-                                    <p class="card-heading">注意！</p>
-                                    <p>配置文件以及二维码请勿泄露！</p>
+                                    <p class="card-heading">注意</p>
+                                    <p>設定ファイルとQRコードは絶対に第三者に公開しないでください</p>
                                 </div>
 
                             </div>
@@ -31,7 +31,7 @@
                         <div class="card">
                             <div class="card-main">
                                 <div class="card-inner">
-                                    <p class="card-heading">配置信息</p>
+                                    <p class="card-heading">接続設定</p>
                                     <div class="tab-content">
 
                                         <nav class="tab-nav">
@@ -53,19 +53,18 @@
                                                     <p>您好，Shadowsocks V2Ray-Plugin 节点需要您的加密方式使用 AEAD 系列。请您到 资料编辑
                                                         页面修改后再来查看此处。</p>
                                                 {else}
-                                                    <p>服务器地址：{$ssr_item['address']}<br>
-                                                        服务器端口：{$ssr_item['port']}<br>
-                                                        加密方式：{$ssr_item['method']}<br>
-                                                        密码：{$ssr_item['passwd']}<br>
-                                                        协议：{$ssr_item['protocol']}<br>
-                                                        协议参数：{$ssr_item['protocol_param']}<br>
-                                                        混淆：{$ssr_item['obfs']}<br>
-                                                        混淆参数：{$ssr_item['obfs_param']}<br></p>
+                                                    <p>サーバーアドレス：{$ssr_item['address']}<br>
+                                                        ポート番号：{$ssr_item['port']}<br>
+                                                        暗号化方式：{$ssr_item['method']}<br>
+                                                        パスワード：{$ssr_item['passwd']}<br>
+                                                        プロトコル：{$ssr_item['protocol']}<br>
+                                                        プロトコルのパラメーター：{$ssr_item['protocol_param']}<br>
+                                                        OBFS：{$ssr_item['obfs']}<br>
+                                                        OBFSのパラメーター：{$ssr_item['obfs_param']}<br></p>
                                                 {/if}
                                             {else}
-                                                <p>您好，您目前的 加密方式，混淆，或者协议设置在 ShadowsocksR 客户端下无法连接。请您选用 Shadowsocks
-                                                    客户端来连接，或者到 资料编辑 页面修改后再来查看此处。</p>
-                                                <p>同时, ShadowsocksR 单端口多用户的连接不受您设置的影响,您可以在此使用相应的客户端进行连接~</p>
+                                                <p>現在の暗号化方式、プロトコル、OBFSの設定はShadowsocksRでは接続できません。クライアントの接続設定をShadowsocksとして設定するかアカウント設定からSS/SSDを選択してください。</p>
+                                                <p>ShadowsocksR単一ポートの場合はこの影響を受けません。</p>
                                             {/if}
                                         </div>
                                         <div class="tab-pane fade {if !$ssr_prefer}active in{/if}" id="ss_info">
@@ -75,16 +74,15 @@
                                                     <p>您好，Shadowsocks V2Ray-Plugin 节点需要您的加密方式使用 AEAD 系列。请您到 资料编辑
                                                         页面修改后再来查看此处。</p>
                                                 {else}
-                                                    <p>服务器地址：{$ss_item['address']}<br>
-                                                        服务器端口：{$ss_item['port']}<br>
-                                                        加密方式：{$ss_item['method']}<br>
-                                                        密码：{$ss_item['passwd']}<br>
-                                                        混淆：{$ss_item['obfs']}<br>
-                                                        混淆参数：{$ss_item['obfs_param']}<br></p>
+                                                    <p>サーバーアドレス：{$ss_item['address']}<br>
+                                                        ポート番号：{$ss_item['port']}<br>
+                                                        暗号化方式：{$ss_item['method']}<br>
+                                                        パスワード：{$ss_item['passwd']}<br>
+                                                        プロトコル：{$ss_item['obfs']}<br>
+                                                        プロトコルのパラメーター：{$ss_item['obfs_param']}<br></p>
                                                 {/if}
                                             {else}
-                                                <p>您好，您目前的 加密方式，混淆，或者协议设置在 Shadowsocks 客户端下无法连接。请您选用 ShadowsocksR
-                                                    客户端来连接，或者到 资料编辑 页面修改后再来查看此处。</p>
+                                                <p>現在の暗号化方式、プロトコル、OBFSの設定はShadowsocksでは接続できません。クライアントの接続設定をShadowsocksRとして設定するかアカウント設定からSSRを選択してください。</p>
                                             {/if}
                                         </div>
                                     </div>
@@ -133,8 +131,7 @@
                                                </pre>
                                             {/if}
                                         {else}
-                                            <p>您好，您目前的 加密方式，混淆，或者协议设置在 ShadowsocksR 客户端下无法连接。请您选用 Shadowsocks 客户端来连接，或者到
-                                                资料编辑 页面修改后再来查看此处。</p>
+                                            <p>現在の暗号化方式、プロトコル、OBFSの設定はShadowsocksRでは接続できません。クライアントの接続設定をShadowsocksとして設定するかアカウント設定からSS/SSDを選択してください。</p>
                                         {/if}
                                     </div>
                                     <div class="tab-pane fade {if !$ssr_prefer}active in{/if}" id="ss_json">
@@ -158,8 +155,7 @@
 </pre>
                                             {/if}
                                         {else}
-                                            <p>您好，您目前的 加密方式，混淆，或者协议设置在 Shadowsocks 客户端下无法连接。请您选用 ShadowsocksR 客户端来连接，或者到
-                                                资料编辑 页面修改后再来查看此处。</p>
+                                            <p>現在の暗号化方式、プロトコル、OBFSの設定はShadowsocksでは接続できません。クライアントの接続設定をShadowsocksRとして設定するかアカウント設定からSSRを選択してください。</p>
                                         {/if}
                                     </div>
 
@@ -173,7 +169,7 @@
                         <div class="card">
                             <div class="card-main">
                                 <div class="card-inner">
-                                    <p class="card-heading">配置链接</p>
+                                    <p class="card-heading">接続用リンク</p>
 
                                     <nav class="tab-nav">
                                         <ul class="nav nav-list">
@@ -192,14 +188,12 @@
                                                     页面修改后再来查看此处。</p>
                                             {else}
                                                 <p><a class="copy-text"
-                                                      data-clipboard-text="{URL::getItemUrl($ssr_item, 0)}">点我复制配置链接</a>
+                                                      data-clipboard-text="{URL::getItemUrl($ssr_item, 0)}">クリックして接続用リンクをコピーする</a>
                                                 </p>
-                                                <p><a href="{URL::getItemUrl($ssr_item, 0)}">iOS 上用 Safari
-                                                        打开点我即可直接添加</a></p>
+                                                <p><a href="{URL::getItemUrl($ssr_item, 0)}">iOSの場合は直接リンクを開いてアプリに設定できます</a></p>
                                             {/if}
                                         {else}
-                                            <p>您好，您目前的 加密方式，混淆，或者协议设置在 ShadowsocksR 客户端下无法连接。请您选用 Shadowsocks 客户端来连接，或者到
-                                                资料编辑 页面修改后再来查看此处。</p>
+                                            <p>現在の暗号化方式、プロトコル、OBFSの設定はShadowsocksRでは接続できません。クライアントの接続設定をShadowsocksとして設定するかアカウント設定からSS/SSDを選択してください。</p>
                                         {/if}
                                     </div>
                                     <div class="tab-pane fade {if !$ssr_prefer}active in{/if}" id="ss_url">
@@ -209,14 +203,13 @@
                                                     页面修改后再来查看此处。</p>
                                             {else}
                                                 <p><a class="copy-text"
-                                                      data-clipboard-text="{URL::getItemUrl($ss_item, 1)}">点我复制配置链接</a>
+                                                      data-clipboard-text="{URL::getItemUrl($ss_item, 1)}">クリックして接続用リンクをコピーする</a>
                                                 </p>
-                                                <p><a href="{URL::getItemUrl($ss_item, 1)}">iOS 上用 Safari 打开点我即可直接添加</a>
+                                                <p><a href="{URL::getItemUrl($ss_item, 1)}">iOSの場合は直接リンクを開いてアプリに設定できます</a>
                                                 </p>
                                             {/if}
                                         {else}
-                                            <p>您好，您目前的 加密方式，混淆，或者协议设置在 Shadowsocks 客户端下无法连接。请您选用 ShadowsocksR 客户端来连接，或者到
-                                                资料编辑 页面修改后再来查看此处。</p>
+                                            <p>現在の暗号化方式、プロトコル、OBFSの設定はShadowsocksでは接続できません。クライアントの接続設定をShadowsocksRとして設定するかアカウント設定からSSRを選択してください。</p>
                                         {/if}
                                     </div>
                                 </div>
@@ -229,7 +222,7 @@
                         <div class="card">
                             <div class="card-main">
                                 <div class="card-inner">
-                                    <p class="card-heading">配置二维码</p>
+                                    <p class="card-heading">QRコード</p>
 
                                     <nav class="tab-nav">
                                         <ul class="nav nav-list">
@@ -258,8 +251,7 @@
                                                 </div>
                                             {/if}
                                         {else}
-                                            <p>您好，您目前的 加密方式，混淆，或者协议设置在 ShadowsocksR 客户端下无法连接。请您选用 Shadowsocks 客户端来连接，或者到
-                                                资料编辑 页面修改后再来查看此处。</p>
+                                            <p>現在の暗号化方式、プロトコル、OBFSの設定はShadowsocksRでは接続できません。クライアントの接続設定をShadowsocksとして設定するかアカウント設定からSS/SSDを選択してください。</p>
                                         {/if}
                                     </div>
                                     <div class="tab-pane fade {if !$ssr_prefer}active in{/if}" id="ss_qrcode">
@@ -296,8 +288,7 @@
                                                 </div>
                                             {/if}
                                         {else}
-                                            <p>您好，您目前的 加密方式，混淆，或者协议设置在 Shadowsocks 客户端下无法连接。请您选用 ShadowsocksR 客户端来连接，或者到
-                                                资料编辑 页面修改后再来查看此处。</p>
+                                            <p>現在の暗号化方式、プロトコル、OBFSの設定はShadowsocksでは接続できません。クライアントの接続設定をShadowsocksRとして設定するかアカウント設定からSSRを選択してください。</p>
                                         {/if}
                                     </div>
                                 </div>
@@ -326,7 +317,7 @@
     });
     $(".copy-text").click(function () {
         $("#result").modal();
-        $$.getElementById('msg').innerHTML = '已拷贝订阅链接，请您继续接下来的操作'
+        $$.getElementById('msg').innerHTML = 'サブスクリプションリンクをコピーしました。クライアント側で設定してください。'
     });
 
     {if URL::SSCanConnect($user, $mu)}

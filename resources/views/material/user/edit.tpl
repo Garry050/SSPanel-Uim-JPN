@@ -3,7 +3,7 @@
 <main class="content">
     <div class="content-header ui-content-header">
         <div class="container">
-            <h1 class="content-heading">修改资料</h1>
+            <h1 class="content-heading">アカウント設定</h1>
         </div>
     </div>
     <div class="container">
@@ -15,13 +15,13 @@
                         <div class="card-inner">
                             <div class="card-inner">
                                 <div class="cardbtn-edit">
-                                    <div class="card-heading">节点连接密码修改</div>
+                                    <div class="card-heading">サーバーの接続パスワードの変更</div>
                                     <button class="btn btn-flat" id="ss-pwd-update"><span class="icon">check</span>&nbsp;</button>
                                 </div>
 
-                                <p>当前连接密码：<code id="ajax-user-passwd">{$user->passwd}</code>
+                                <p>現在のパスワード：<code id="ajax-user-passwd">{$user->passwd}</code>
                                     <button class="kaobei copy-text btn btn-subscription" type="button" data-clipboard-text="{$user->passwd}">
-                                        点击拷贝
+                                        コピー
                                     </button>
                                 </p>
                                 <!--<div class="form-group form-group-label">
@@ -29,9 +29,9 @@
                                     <input class="form-control maxwidth-edit" id="sspwd" type="text">
                                 </div>
                                 <br>-->
-                                <p>为了确保您的安全，节点连接密码不允许自定义，点击提交按钮将会自动生成由随机字母和数字组成的连接密码。</p>
-                                <p>修改连接密码同时也会自动为您重新生成 V2Ray 节点的 UUID。</p>
-                                <p>修改密码后，请立刻更新各个客户端上的连接信息。</p>
+                                <p>セキュリティの安全の観点からパスワードを任意に設定することはできません。</p>
+                                <p>チェックマークボタンを押すことでランダムに生成されます（一度生成したらページを更新するまで再度生成できません）</p>
+                                <p>パスワードを変更したら適時Shadowsocksクライアントからパスワードを更新してください。</p>
                             </div>
                         </div>
                     </div>
@@ -42,25 +42,24 @@
                     <div class="card-main">
                         <div class="card-inner">
                             <div class="card-inner">
-                                <div class="card-heading">选择客户端</div>
-                                <p>SS/SSD/SSR 支持的加密方式和混淆方式有所不同，请根据实际情况来进行选择</p>
-                                <p>在这里选择你需要使用的客户端可以帮助你筛选加密方式和混淆方式</p>
-                                <p>auth_chain 系为实验性协议，可能造成不稳定或无法使用</p>
+                                <div class="card-heading">クライアント設定</div>
+                                <p>Shadowsocks/ShadowsocksD/ShadowsocksR、それぞれ設定できる暗号化方式、プラグインが違います。</p>
+                                <p>使用したいクライアントを選択して暗号化方式とプロトコル、プラグインを設定してください</p>
                                 <br>
                                 <button class="btn btn-subscription" type="button" id="filter-btn-ss">SS/SSD</button>
                                 <button class="btn btn-subscription" type="button" id="filter-btn-ssr">SSR</button>
-                                <button class="btn btn-subscription" type="button" id="filter-btn-universal">通用</button>
+                                <button class="btn btn-subscription" type="button" id="filter-btn-universal">決定</button>
                             </div>
                             <div class="card-inner">
                                 <div class="cardbtn-edit">
-                                    <div class="card-heading">加密方式修改</div>
+                                    <div class="card-heading">暗号化方式</div>
                                     <button class="btn btn-flat" id="method-update"><span class="icon">check</span>&nbsp</button>
                                 </div>
                                 <p>
-                                    当前加密方式：<code id="ajax-user-method" data-default="method">[{if URL::CanMethodConnect($user->method) == 2}SS/SSD{else}SS/SSR{/if}可连接] {$user->method}</code>
+                                    現在の暗号化方式：<code id="ajax-user-method" data-default="method">[{if URL::CanMethodConnect($user->method) == 2}SS/SSD{else}SS/SSR{/if}で使用可能] {$user->method}</code>
                                 </p>
                                 <div class="form-group form-group-label control-highlight-custom dropdown">
-                                    <label class="floating-label" for="method">加密方式</label>
+                                    <label class="floating-label" for="method">暗号化方式</label>
                                     <button id="method" class="form-control maxwidth-edit" data-toggle="dropdown"
                                             value="{$user->method}"></button>
                                     <ul class="dropdown-menu" aria-labelledby="method">
@@ -70,7 +69,7 @@
                                                 <a href="#" class="dropdown-option" onclick="return false;"
                                                    val="{$method}"
                                                    data="method">[{if URL::CanMethodConnect($method) == 2}SS/SSD{else}SS/SSR{/if}
-                                                    可连接] {$method}</a>
+                                                    で使用可能] {$method}</a>
                                             </li>
                                         {/foreach}
                                     </ul>
@@ -79,12 +78,12 @@
 
                             <div class="card-inner">
                                 <div class="cardbtn-edit">
-                                    <div class="card-heading">协议&混淆设置</div>
+                                    <div class="card-heading">プロトコル・プラグイン設定</div>
                                     <button class="btn btn-flat" id="ssr-update"><span class="icon">check</span>&nbsp;</button>
                                 </div>
-                                <p>当前协议：<code id="ajax-user-protocol" data-default="protocol">[{if URL::CanProtocolConnect($user->protocol) == 3}SS/SSD/SSR{else}SSR{/if}可连接] {$user->protocol}</code></p>
+                                <p>現在のプロトコル：<code id="ajax-user-protocol" data-default="protocol">[{if URL::CanProtocolConnect($user->protocol) == 3}SS/SSD/SSR{else}SSR{/if}で使用可能] {$user->protocol}</code></p>
                                 <div class="form-group form-group-label control-highlight-custom dropdown">
-                                    <label class="floating-label" for="protocol">协议</label>
+                                    <label class="floating-label" for="protocol">プロトコル</label>
                                     <button id="protocol" class="form-control maxwidth-edit" data-toggle="dropdown"
                                             value="{$user->protocol}"></button>
                                     <ul class="dropdown-menu" aria-labelledby="protocol">
@@ -93,7 +92,7 @@
                                             <li class="{if URL::CanProtocolConnect($protocol) == 3}filter-item-universal{else}filter-item-ssr{/if}">
                                                 <a href="#" class="dropdown-option" onclick="return false;" val="{$protocol}" data="protocol">
                                                     [{if URL::CanProtocolConnect($protocol) == 3}SS/SSD/SSR{else}SSR{/if}
-                                                    可连接] {$protocol}
+                                                    で使用可能] {$protocol}
                                                 </a>
                                             </li>
                                         {/foreach}
@@ -103,17 +102,17 @@
                             </div>
 
                             <div class="card-inner">
-                                <p>当前混淆方式：<code id="ajax-user-obfs" data-default="obfs">[{if URL::CanObfsConnect($user->obfs) >= 3}SS/SSD/SSR{elseif URL::CanObfsConnect($user->obfs) == 1}SSR{else}SS/SSD{/if}可连接] {$user->obfs}</code></p>
-                                <p>SS/SSD 和 SSR 支持的混淆类型有所不同，simple_obfs_* 为 SS/SSD 的混淆方式，其他为 SSR 的混淆方式</p>
+                                <p>現在のプラグイン：<code id="ajax-user-obfs" data-default="obfs">[{if URL::CanObfsConnect($user->obfs) >= 3}SS/SSD/SSR{elseif URL::CanObfsConnect($user->obfs) == 1}SSR{else}SS/SSD{/if}で使用可能] {$user->obfs}</code></p>
+                                <p>SS/SSDとSSRで使用できるプラグインが違います。simple_obfs_* はSS/SSD のプラグインです。それ以外はSSRのプラグインです。</p>
                                 <div class="form-group form-group-label control-highlight-custom dropdown">
-                                    <label class="floating-label" for="obfs">混淆方式</label>
+                                    <label class="floating-label" for="obfs">プラグイン設定</label>
                                     <button id="obfs" class="form-control maxwidth-edit" data-toggle="dropdown" value="{$user->obfs}"></button>
                                     <ul class="dropdown-menu" aria-labelledby="obfs">
                                         {$obfs_list = $config_service->getSupportParam('obfs')}
                                         {foreach $obfs_list as $obfs}
                                             <li class="{if URL::CanObfsConnect($obfs) >= 3}filter-item-universal{else}{if URL::CanObfsConnect($obfs) == 1}filter-item-ssr{else}filter-item-ss{/if}{/if}">
                                                 <a href="#" class="dropdown-option" onclick="return false;" val="{$obfs}" data="obfs">
-                                                    [{if URL::CanObfsConnect($obfs) >= 3}SS/SSD/SSR{else}{if URL::CanObfsConnect($obfs) == 1}SSR{else}SS/SSD{/if}{/if}可连接] {$obfs}
+                                                    [{if URL::CanObfsConnect($obfs) >= 3}SS/SSD/SSR{else}{if URL::CanObfsConnect($obfs) == 1}SSR{else}SS/SSD{/if}{/if}で使用可能] {$obfs}
                                                 </a>
                                             </li>
                                         {/foreach}
@@ -122,9 +121,9 @@
                             </div>
 
                             <div class="card-inner">
-                                <p>当前混淆参数：<code id="ajax-user-obfs-param">{$user->obfs_param}</code></p>
+                                <p>現在のプロトコルパラメーター：<code id="ajax-user-obfs-param">{$user->obfs_param}</code></p>
                                 <div class="form-group form-group-label">
-                                    <label class="floating-label" for="obs-param">在这输入混淆参数</label>
+                                    <label class="floating-label" for="obs-param">必要に応じてパラメーターを設定してください</label>
                                     <input class="form-control maxwidth-edit" id="obfs-param" type="text">
                                 </div>
                             </div>
@@ -143,22 +142,22 @@
                         <div class="card-inner">
                             <div class="card-inner">
                                 <div class="cardbtn-edit">
-                                    <div class="card-heading">账号登录密码修改</div>
+                                    <div class="card-heading">アカウントのログインパスワードの設定</div>
                                     <button class="btn btn-flat" id="pwd-update"><span class="icon">check</span>&nbsp;
                                     </button>
                                 </div>
                                 <div class="form-group form-group-label">
-                                    <label class="floating-label" for="oldpwd">当前密码</label>
+                                    <label class="floating-label" for="oldpwd">現在のパスワードを入力</label>
                                     <input class="form-control maxwidth-edit" id="oldpwd" type="password">
                                 </div>
 
                                 <div class="form-group form-group-label">
-                                    <label class="floating-label" for="pwd">新密码</label>
+                                    <label class="floating-label" for="pwd">新しいパスワード</label>
                                     <input class="form-control maxwidth-edit" id="pwd" type="password">
                                 </div>
 
                                 <div class="form-group form-group-label">
-                                    <label class="floating-label" for="repwd">确认新密码</label>
+                                    <label class="floating-label" for="repwd">新しいパスワードの確認</label>
                                     <input class="form-control maxwidth-edit" id="repwd" type="password">
                                 </div>
                             </div>
@@ -172,11 +171,11 @@
                         <div class="card-inner">
                             <div class="card-inner">
                                 <div class="cardbtn-edit">
-                                    <div class="card-heading">IP 解封</div>
+                                    <div class="card-heading">IPのブロック解除</div>
                                     <button class="btn btn-flat" id="unblock"><span class="icon">not_interested</span>&nbsp;
                                     </button>
                                 </div>
-                                <p>当前状态：<code id="ajax-block">{$Block}</code></p>
+                                <p>現在の状態：<code id="ajax-block">{$Block}</code></p>
 
                             </div>
                         </div>
@@ -188,21 +187,21 @@
                         <div class="card-inner">
                             <div class="card-inner">
                                 <div class="cardbtn-edit">
-                                    <div class="card-heading">每日邮件接收设置</div>
+                                    <div class="card-heading">メール受信設定</div>
                                     <button class="btn btn-flat" id="mail-update"><span class="icon">check</span>&nbsp;
                                     </button>
                                 </div>
                                 <p class="card-heading"></p>
-                                <p>当前设置：<code id="ajax-mail" data-default="mail">{if $user->sendDailyMail==1}发送{else}不发送{/if}</code></p>
+                                <p>現在の設定：<code id="ajax-mail" data-default="mail">{if $user->sendDailyMail==1}受信する{else}受信しない{/if}</code></p>
                                 <div class="form-group form-group-label control-highlight-custom dropdown">
-                                    <label class="floating-label" for="mail">发送设置</label>
+                                    <label class="floating-label" for="mail">受信設定</label>
                                     <button type="button" id="mail" class="form-control maxwidth-edit"
                                             data-toggle="dropdown" value="{$user->sendDailyMail}"></button>
                                     <ul class="dropdown-menu" aria-labelledby="mail">
                                         <li><a href="#" class="dropdown-option" onclick="return false;" val="1"
-                                               data="mail">发送</a></li>
+                                               data="mail">受信する</a></li>
                                         <li><a href="#" class="dropdown-option" onclick="return false;" val="0"
-                                               data="mail">不发送</a></li>
+                                               data="mail">受信しない</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -215,29 +214,29 @@
                         <div class="card-inner">
                             <div class="card-inner">
                                 <div class="cardbtn-edit">
-                                    <div class="card-heading">联络方式修改</div>
+                                    <div class="card-heading">連絡先の設定</div>
                                     <button class="btn btn-flat" id="wechat-update"><span class="icon">check</span>&nbsp;
                                     </button>
                                 </div>
-                                <p>当前联络方式：
+                                <p>連絡先の設定：
                                     <code id="ajax-im" data-default="imtype">
-                                        {if $user->im_type==1}微信{/if}
+                                        {if $user->im_type==1}WeChat{/if}
                                         {if $user->im_type==2}QQ{/if}
                                         {if $user->im_type==3}Google+{/if}
                                         {if $user->im_type==4}Telegram{/if}
                                         {if $user->im_type==5}Discord{/if}
                                     </code>
                                 </p>
-                                <p>当前联络方式账号：
+                                <p>連絡先のユーザー名：
                                     <code>{$user->im_value}</code>
                                 </p>
                                 <div class="form-group form-group-label control-highlight-custom dropdown">
-                                    <label class="floating-label" for="imtype">选择您的联络方式</label>
+                                    <label class="floating-label" for="imtype">連絡先を選択してください</label>
                                     <button class="form-control maxwidth-edit" id="imtype" data-toggle="dropdown"
                                             value="{$user->im_type}"></button>
                                     <ul class="dropdown-menu" aria-labelledby="imtype">
                                         <li><a href="#" class="dropdown-option" onclick="return false;" val="1"
-                                               data="imtype">微信</a></li>
+                                               data="imtype">WeChat</a></li>
                                         <li><a href="#" class="dropdown-option" onclick="return false;" val="2"
                                                data="imtype">QQ</a></li>
                                         <li><a href="#" class="dropdown-option" onclick="return false;" val="3"
@@ -250,7 +249,7 @@
                                 </div>
 
                                 <div class="form-group form-group-label">
-                                    <label class="floating-label" for="wechat">在这输入联络方式账号</label>
+                                    <label class="floating-label" for="wechat">連絡先のユーザー名を入力してください</label>
                                     <input class="form-control maxwidth-edit" id="wechat" type="text">
                                 </div>
                             </div>
@@ -262,40 +261,40 @@
                     <div class="card-main">
                         <div class="card-inner">
                             <div class="card-inner">
-                                <p class="card-heading">两步验证</p>
-                                <p>请使用 TOTP 两步验证器扫描下面的二维码。</p>
+                                <p class="card-heading">二段階認証</p>
+                                <p>Google認証システムアプリを使用してQRコードをスキャンしてください</p>
                                 <p><i class="icon icon-lg" aria-hidden="true">android</i><a
                                             href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2">&nbsp;Android</a>
                                 </p>
                                 <p><i class="icon icon-lg" aria-hidden="true">tablet_mac</i><a
                                             href="https://itunes.apple.com/cn/app/google-authenticator/id388497605?mt=8">&nbsp;iOS</a>
                                 </p>
-                                <p>在没有测试完成绑定成功之前请不要启用。</p>
-                                <p>当前设置：<code data-default="ga-enable">{if $user->ga_enable==1} 要求验证 {else} 不要求 {/if}</code>
+                                <p>設定が完了するまで完了ボタンを押さないでください。</p>
+                                <p>現在の設定：<code data-default="ga-enable">{if $user->ga_enable==1} 使用する {else} 使用しない {/if}</code>
                                 </p>
-                                <p>当前服务器时间：{date("Y-m-d H:i:s")}</p>
+                                <p>現在の時刻：{date("Y-m-d H:i:s")}</p>
                                 <div class="form-group form-group-label control-highlight-custom dropdown">
-                                    <label class="floating-label" for="ga-enable">验证设置</label>
+                                    <label class="floating-label" for="ga-enable">二段階認証設定</label>
                                     <button type="button" id="ga-enable" class="form-control maxwidth-edit"
                                             data-toggle="dropdown" value="{$user->ga_enable}"></button>
                                     <ul class="dropdown-menu" aria-labelledby="ga-enable">
                                         <li><a href="#" class="dropdown-option" onclick="return false;" val="0"
-                                               data="ga-enable">不要求</a></li>
+                                               data="ga-enable">使用しない</a></li>
                                         <li><a href="#" class="dropdown-option" onclick="return false;" val="1"
-                                               data="ga-enable">要求验证</a></li>
+                                               data="ga-enable">使用する</a></li>
                                     </ul>
                                 </div>
 
                                 <div class="form-group form-group-label">
                                     <div class="text-center">
                                         <div id="ga-qr" class="qr-center"></div>
-                                        密钥：{$user->ga_token}
+                                        トークン：{$user->ga_token}
                                     </div>
                                 </div>
 
                                 <div class="form-group form-group-label">
-                                    <label class="floating-label" for="code">测试一下</label>
-                                    <input type="text" id="code" placeholder="输入验证器生成的数字来测试"
+                                    <label class="floating-label" for="code">テスト用コード</label>
+                                    <input type="text" id="code" placeholder="二段階認証コードを入力してください"
                                            class="form-control maxwidth-edit">
                                 </div>
 
@@ -303,11 +302,11 @@
                             <div class="card-action">
                                 <div class="card-action-btn pull-left">
                                     <a class="btn btn-brand-accent btn-flat waves-attach" href="/user/gareset"><span
-                                                class="icon">format_color_reset</span>&nbsp;重置</a>
+                                                class="icon">format_color_reset</span>&nbsp;リセット</a>
                                     <button class="btn btn-flat waves-attach" id="ga-test"><span
-                                                class="icon">extension</span>&nbsp;测试
+                                                class="icon">extension</span>&nbsp;テスト
                                     </button>
-                                    <button class="btn btn-brand btn-flat waves-attach" id="ga-set"><span class="icon">perm_data_setting</span>&nbsp;设置
+                                    <button class="btn btn-brand btn-flat waves-attach" id="ga-set"><span class="icon">perm_data_setting</span>&nbsp;設定する
                                     </button>
                                 </div>
                             </div>
@@ -322,7 +321,7 @@
                                 {if $config['port_price']>=0}
                                     <div class="card-inner">
                                         <div class="cardbtn-edit">
-                                            <div class="card-heading">重置端口</div>
+                                            <div class="card-heading">ポートのリセット</div>
                                             <button class="btn btn-flat" id="portreset"><span
                                                         class="icon">autorenew</span>&nbsp;
                                             </button>
@@ -413,13 +412,13 @@
                         <div class="card-inner">
                             <div class="card-inner">
                                 <div class="cardbtn-edit">
-                                    <div class="card-heading">主题修改</div>
+                                    <div class="card-heading">テーマの切り替え(WIP)</div>
                                     <button class="btn btn-flat" id="theme-update"><span class="icon">check</span>&nbsp;
                                     </button>
                                 </div>
-                                <p>当前主题：<code data-default="theme">{$user->theme}</code></p>
+                                <p>現在のテーマ：<code data-default="theme">{$user->theme}</code></p>
                                 <div class="form-group form-group-label control-highlight-custom dropdown">
-                                    <label class="floating-label" for="theme">主题</label>
+                                    <label class="floating-label" for="theme">テーマ</label>
                                     <button id="theme" type="button" class="form-control maxwidth-edit" data-toggle="dropdown" value="{$user->theme}">
 
                                     </button>
@@ -453,7 +452,7 @@
 
     $(".copy-text").click(function () {
         $("#result").modal();
-        $$.getElementById('msg').innerHTML = '已复制到您的剪贴板。';
+        $$.getElementById('msg').innerHTML = 'クリップボードにコピーされました。';
     });
 </script>
 
@@ -519,7 +518,7 @@
                     if (data.ret) {
                         $("#result").modal();
                         $$.getElementById('ajax-user-port').innerHTML = data.msg;
-                        $$.getElementById('msg').innerHTML = `设置成功，新端口是 ${
+                        $$.getElementById('msg').innerHTML = `新しいポート番号: ${
                                 data.msg
                                 }`;
                     } else {
@@ -531,7 +530,7 @@
                     $("#result").modal();
                     $$.getElementById('msg').innerHTML = `${
                             data.msg
-                            } 出现了一些错误`;
+                            } エラーが発生しました`;
                 }
             })
         })
@@ -561,7 +560,7 @@
                     $("#result").modal();
                     $$.getElementById('msg').innerHTML = `${
                             data.msg
-                            } 出现了一些错误`;
+                            } エラーが発生しました`;
                 }
             })
         })
@@ -586,7 +585,7 @@
                     $("#result").modal();
                     $$.getElementById('msg').innerHTML = `${
                             data.msg
-                            } 出现了一些错误`;
+                            } エラーが発生しました`;
                 }
             })
         })
@@ -613,7 +612,7 @@
                     $("#result").modal();
                     $$.getElementById('msg').innerHTML = `${
                             data.msg
-                            } 出现了一些错误`;
+                            } エラーが発生しました`;
                 }
             })
         })
@@ -664,7 +663,7 @@
                 },
                 error: (jqXHR) => {
                     $("#result").modal();
-                    $$.getElementById('msg').innerHTML = `${data.msg} 出现了一些错误`;
+                    $$.getElementById('msg').innerHTML = `${data.msg} エラーが発生しました`;
                 }
             })
         })
@@ -697,7 +696,7 @@
                 },
                 error: (jqXHR) => {
                     $("#result").modal();
-                    $$.getElementById('msg').innerHTML = `${data.msg} 出现了一些错误`;
+                    $$.getElementById('msg').innerHTML = `${data.msg} エラーが発生しました`;
                 }
             })
         })
@@ -722,7 +721,7 @@
                 },
                 error: (jqXHR) => {
                     $("#result").modal();
-                    $$.getElementById('msg').innerHTML = `${data.msg} 出现了一些错误`;
+                    $$.getElementById('msg').innerHTML = `${data.msg} エラーが発生しました`;
                 }
             })
         })
@@ -742,10 +741,10 @@
                         $("#result").modal();
                         $$.getElementById('ajax-block').innerHTML = `IP：${
                                 data.msg
-                                } 没有被封`;
+                                } ブロックされていません`;
                         $$.getElementById('msg').innerHTML = `IP：${
                                 data.msg
-                                } 解封成功过`;
+                                } ブロック解除されました`;
                     } else {
                         $("#result").modal();
                         $$.getElementById('msg').innerHTML = data.msg;
@@ -753,7 +752,7 @@
                 },
                 error: (jqXHR) => {
                     $("#result").modal();
-                    $$.getElementById('msg').innerHTML = `${data.msg} 出现了一些错误`;
+                    $$.getElementById('msg').innerHTML = `${data.msg} エラーが発生しました`;
                 }
             })
         })
@@ -777,7 +776,7 @@
                 },
                 error: (jqXHR) => {
                     $("#result").modal();
-                    $$.getElementById('msg').innerHTML = `${data.msg} 出现了一些错误`;
+                    $$.getElementById('msg').innerHTML = `${data.msg} エラーが発生しました`;
                 }
             })
         })
@@ -801,7 +800,7 @@
                 },
                 error: (jqXHR) => {
                     $("#result").modal();
-                    $$.getElementById('msg').innerHTML = `${data.msg} 出现了一些错误`;
+                    $$.getElementById('msg').innerHTML = `${data.msg} エラーが発生しました`;
                 }
             })
         })
@@ -823,15 +822,15 @@
                     if (data.ret) {
                         $("#result").modal();
                         $$.getElementById('ajax-user-passwd').innerHTML = newsspwd;
-                        $$.getElementById('msg').innerHTML = '修改成功';
+                        $$.getElementById('msg').innerHTML = '設定が保存されました';
                     } else {
                         $("#result").modal();
-                        $$.getElementById('msg').innerHTML = '修改失败';
+                        $$.getElementById('msg').innerHTML = '設定に失敗しました';
                     }
                 },
                 error: (jqXHR) => {
                     $("#result").modal();
-                    $$.getElementById('msg').innerHTML = `${data.msg} 出现了一些错误`;
+                    $$.getElementById('msg').innerHTML = `${data.msg} エラーが発生しました`;
                 }
             })
         })
@@ -852,7 +851,7 @@
                 success: (data) => {
                     if (data.ret) {
                         $("#result").modal();
-                        $$.getElementById('ajax-mail').innerHTML = ($$getValue('mail') === '1') ? '发送' : '不发送'
+                        $$.getElementById('ajax-mail').innerHTML = ($$getValue('mail') === '1') ? '受信する' : '受信しない'
                         $$.getElementById('msg').innerHTML = data.msg;
                     } else {
                         $("#result").modal();
@@ -861,7 +860,7 @@
                 },
                 error: (jqXHR) => {
                     $("#result").modal();
-                    $$.getElementById('msg').innerHTML = `${data.msg} 出现了一些错误`;
+                    $$.getElementById('msg').innerHTML = `${data.msg} エラーが発生しました`;
                 }
             })
         })
@@ -893,7 +892,7 @@
                     $("#result").modal();
                     $$.getElementById('msg').innerHTML = `${
                             data.msg
-                            } 出现了一些错误`;
+                            } エラーが発生しました`;
                 }
             })
         })
@@ -915,7 +914,7 @@
                     $$.getElementById('ajax-user-method').innerHTML = $$getValue('method');
                     if (data.ret) {
                         $("#result").modal();
-                        $$.getElementById('msg').innerHTML = '修改成功';
+                        $$.getElementById('msg').innerHTML = '設定が保存されました';
                     } else {
                         $("#result").modal();
                         $$.getElementById('msg').innerHTML = data.msg;
@@ -925,7 +924,7 @@
                     $("#result").modal();
                     $$.getElementById('msg').innerHTML = `${
                             data.msg
-                            } 出现了一些错误`;
+                            } エラーが発生しました`;
                 }
             })
         })

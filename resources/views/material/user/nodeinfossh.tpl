@@ -4,7 +4,7 @@
 <main class="content">
     <div class="content-header ui-content-header">
         <div class="container">
-            <h1 class="content-heading">节点信息</h1>
+            <h1 class="content-heading">サーバー情報</h1>
         </div>
     </div>
     <div class="container">
@@ -15,8 +15,8 @@
                         <div class="card">
                             <div class="card-main">
                                 <div class="card-inner margin-bottom-no">
-                                    <p class="card-heading">注意！</p>
-                                    <p>下面为您的 SSH 配置。</p>
+                                    <p class="card-heading">注意</p>
+                                    <p>以下はSSHの接続設定です</p>
                                 </div>
 
                             </div>
@@ -26,7 +26,7 @@
                         <div class="card">
                             <div class="card-main">
                                 <div class="card-inner margin-bottom-no">
-                                    <p class="card-heading">配置信息</p>
+                                    <p class="card-heading">構成情報</p>
                                     <p>{$json_show}</p>
                                 </div>
 
@@ -38,8 +38,8 @@
                         <div class="card">
                             <div class="card-main">
                                 <div class="card-inner margin-bottom-no">
-                                    <p class="card-heading">配置方法</p>
-                                    <p>未完待续</p>
+                                    <p class="card-heading">構成方法</p>
+                                    <p>続き</p>
                                 </div>
 
                             </div>

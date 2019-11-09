@@ -6,20 +6,20 @@
             <div class="auth-main auth-row">
                 <div class="auth-top auth-row">
                     <a class="boardtop-left" href="/">
-                        <div>首 页</div>
+                        <div>トップ</div>
                     </a>
                     <div class="auth-logo">
                         <img src="/images/authlogo.jpg">
                     </div>
                     <a href="/auth/login" class="boardtop-right">
-                        <div>登 录</div>
+                        <div>ログイン</div>
                     </a>
                 </div>
                 {if $config['register_mode']!='close'}
                     <div class="rowtocol">
                         <div class="auth-row">
                             <div class="form-group-label auth-row">
-                                <label class="floating-label" for="name">昵称</label>
+                                <label class="floating-label" for="name">ニックネーム</label>
                                 <input class="form-control maxwidth-auth" id="name" type="text">
                             </div>
                         </div>
@@ -27,7 +27,7 @@
                     <div class="rowtocol">
                         <div class="auth-row">
                             <div class="form-group-label auth-row">
-                                <label class="floating-label" for="email">邮箱(唯一凭证请认真对待)</label>
+                                <label class="floating-label" for="email">メールアドレス</label>
                                 <input class="form-control maxwidth-auth" id="email" type="text" maxlength="32">
                             </div>
                         </div>
@@ -35,7 +35,7 @@
                     <div class="rowtocol">
                         <div class="auth-row">
                             <div class="form-group-label auth-row">
-                                <label class="floating-label" for="passwd">密码</label>
+                                <label class="floating-label" for="passwd">パスワード</label>
                                 <input class="form-control maxwidth-auth" id="passwd" type="password">
                                 <p id="passwd-strong" style="text-align: left; margin: 3px; font-size: 80%"></p>
                             </div>
@@ -44,7 +44,7 @@
                     <div class="rowtocol">
                         <div class="auth-row">
                             <div class="form-group form-group-label">
-                                <label class="floating-label" for="repasswd">重复密码</label>
+                                <label class="floating-label" for="repasswd">パスワードの確認</label>
                                 <input class="form-control maxwidth-auth" id="repasswd" type="password">
                             </div>
                         </div>
@@ -52,13 +52,13 @@
                     <div class="rowtocol">
                         <div class="auth-row">
                             <div class="form-group form-group-label dropdown">
-                                <label class="floating-label" for="imtype">选择您的联络方式</label>
+                                <label class="floating-label" for="imtype">連絡方法</label>
                                 <button class="form-control maxwidth-auth" id="imtype" data-toggle="dropdown">
 
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="imtype">
                                     <li><a href="#" class="dropdown-option" onclick="return false;" val="1"
-                                           data="imtype">微信</a></li>
+                                           data="imtype">WeChat</a></li>
                                     <li><a href="#" class="dropdown-option" onclick="return false;" val="2"
                                            data="imtype">QQ</a></li>
                                     <li><a href="#" class="dropdown-option" onclick="return false;" val="3"
@@ -72,7 +72,7 @@
                     <div class="rowtocol">
                         <div class="auth-row">
                             <div class="form-group form-group-label">
-                                <label class="floating-label" for="wechat">在这输入联络方式账号</label>
+                                <label class="floating-label" for="wechat">アカウントのIDを入力してください</label>
                                 <input class="form-control maxwidth-auth" id="wechat" type="text">
                             </div>
                         </div>
@@ -81,7 +81,7 @@
                         <div class="rowtocol">
                             <div class="auth-row">
                                 <div class="form-group form-group-label">
-                                    <label class="floating-label" for="code">邀请码(必填)</label>
+                                    <label class="floating-label" for="code">招待コード(必須)</label>
                                     <input class="form-control maxwidth-auth" id="code" type="text">
                                 </div>
                             </div>
@@ -91,7 +91,7 @@
                         <div class="rowtocol">
                             <div class="rowtocol">
                                 <div class="form-group form-group-label">
-                                    <label class="floating-label" for="email_code">邮箱验证码</label>
+                                    <label class="floating-label" for="email_code">確認コード</label>
                                     <input class="form-control maxwidth-auth" id="email_code" type="text"
                                            onKeypress="javascript:if(event.keyCode == 32)event.returnValue = false;">
                                 </div>
@@ -100,11 +100,8 @@
                                 <div class="form-group form-group-label">
                                     <button id="email_verify"
                                             class="btn-reg btn btn-block btn-brand-accent waves-attach waves-light">
-                                        获取验证码
+                                        確認コードを送信
                                     </button>
-                                    <a href="" onclick="return false;" data-toggle='modal'
-                                       data-target='#email_nrcy_modal'
-                                       class="auth-help-reg">收不到验证码？</a>
                                 </div>
                             </div>
                         </div>
@@ -127,19 +124,19 @@
                     <div class="rowtocol">
                         <div class="btn-auth auth-row">
                             <button id="tos" type="submit"
-                                    class="btn-reg btn btn-block btn-brand waves-attach waves-light">确认注册
+                                    class="btn-reg btn btn-block btn-brand waves-attach waves-light">新規登録
                             </button>
                         </div>
                     </div>
                 {else}
                     <div class="form-group">
-                        <p>{$config["appName"]} 已停止新用户注册，请联系网站管理员</p>
+                        <p>{$config["appName"]} は現在新規登録できません。</p>
                     </div>
                 {/if}
                 <div class="auth-bottom auth-row auth-reg">
                     <div class="tgauth">
 
-                        <p>注册即代表同意<a href="/tos">服务条款</a>，以及保证所录入信息的真实性，如有不实信息会导致账号被删除。</p>
+                        <p>当サービスを登録する際は<a href="/tos">利用規約</a>に同意する必要があります。必ず確認してください</p>
 
                         <!-- <span>Telegram</span><button class="btn" id="calltgauth"><i class="icon icon-lg">near_me</i></button><span>快捷登录</span> -->
                     </div>
@@ -158,7 +155,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-heading">
-                <h2 class="modal-title">注册 TOS</h2>
+                <h2 class="modal-title">利用規約</h2>
             </div>
             <div class="modal-inner">
                 {include file='reg_tos.tpl'}
@@ -166,31 +163,11 @@
             <div class="modal-footer">
                 <p class="text-right">
                     <button class="btn btn-flat btn-brand-accent waves-attach waves-effect"
-                            data-dismiss="modal" type="button" id="cancel">我不同意
+                            data-dismiss="modal" type="button" id="cancel">同意しない
                     </button>
                     <button class="btn btn-flat btn-brand-accent waves-attach waves-effect" data-dismiss="modal"
                             id="reg"
-                            type="button">我同意
-                    </button>
-                </p>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div aria-hidden="true" class="modal modal-va-middle fade" id="email_nrcy_modal" role="dialog" tabindex="-1">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-heading">
-                <h2 class="modal-title">收不到验证码？</h2>
-            </div>
-            <div class="modal-inner">
-                {include file='email_nrcy.tpl'}
-            </div>
-            <div class="modal-footer">
-                <p class="text-right">
-                    <button class="btn btn-flat btn-brand-accent waves-attach waves-effect" data-dismiss="modal"
-                            type="button">我知道了
+                            type="button">同意する
                     </button>
                 </p>
             </div>
@@ -302,7 +279,7 @@ document.getElementById('passwd').addEventListener('input', checkStrong);
                     error: (jqXHR) => {
                         $("#msg-error").hide(10);
                         $("#msg-error").show(100);
-                        $$.getElementById('msg-error-p').innerHTML = `发生错误：${
+                        $$.getElementById('msg-error-p').innerHTML = `エラーコード：${
                                 jqXHR.status
                                 }`;
                         document.getElementById("tos").disabled = false;
@@ -340,7 +317,7 @@ document.getElementById('passwd').addEventListener('input', checkStrong);
                 {if $geetest_html != null}
                 if (typeof validate === 'undefined' || !validate) {
                     $("#result").modal();
-                    $$.getElementById('msg').innerHTML = '请滑动验证码来完成验证'
+                    $$.getElementById('msg').innerHTML = 'reCAPTUREの確認を完了してください'
                     return;
                 }
 
@@ -358,11 +335,11 @@ document.getElementById('passwd').addEventListener('input', checkStrong);
         function time(o) {
             if (wait == 0) {
                 o.removeAttr("disabled");
-                o.text("获取验证码");
+                o.text("確認コードを送信");
                 wait = 60;
             } else {
                 o.attr("disabled", "disabled");
-                o.text("重新发送(" + wait + ")");
+                o.text("再送信まで(" + wait + ")");
                 wait--;
                 setTimeout(function () {
                             time(o)
@@ -397,7 +374,7 @@ document.getElementById('passwd').addEventListener('input', checkStrong);
                         $("#result").modal();
                         $$.getElementById('msg').innerHTML = `${
                                 data.msg
-                                } 出现了一些错误`;
+                                } エラーが発生しました`;
                     }
                 })
             })

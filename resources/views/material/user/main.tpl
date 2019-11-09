@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-cn">
+<html lang="ja-JP">
 <head>
     <meta charset="UTF-8">
     <meta content="IE=edge" http-equiv="X-UA-Compatible">
@@ -37,24 +37,24 @@
             </a>
             <ul class="dropdown-menu dropdown-menu-right">
                 <li>
-                    <a class="waves-attach" href="/user/"><span class="icon icon-lg margin-right">account_box</span>用户中心</a>
+                    <a class="waves-attach" href="/user/"><span class="icon icon-lg margin-right">account_box</span>トップ画面</a>
                 </li>
 
                 <li>
                     <a class="padding-right-cd waves-attach" href="/user/logout"><span
-                                class="icon icon-lg margin-right">exit_to_app</span>登出</a>
+                                class="icon icon-lg margin-right">exit_to_app</span>ログアウト</a>
                 </li>
             </ul>
             {else}
-            <span class="access-hide">未登录</span>
+            <span class="access-hide">ログインしていません</span>
             <span class="icon icon-lg margin-right">account_circle</span>
             <ul class="dropdown-menu dropdown-menu-right">
                 <li>
-                    <a class="padding-right-lg waves-attach" href="/auth/login"><span class="icon icon-lg margin-right">account_box</span>登录</a>
+                    <a class="padding-right-lg waves-attach" href="/auth/login"><span class="icon icon-lg margin-right">account_box</span>ログイン</a>
                 </li>
                 <li>
                     <a class="padding-right-lg waves-attach" href="/auth/register"><span
-                                class="icon icon-lg margin-right">pregnant_woman</span>注册</a>
+                                class="icon icon-lg margin-right">pregnant_woman</span>新規登録</a>
                 </li>
             </ul>
             {/if}
@@ -67,76 +67,62 @@
             <a class="menu-logo" href="/"><i class="icon icon-lg">language</i>&nbsp;{$config["appName"]}</a>
             <ul class="nav">
                 <li>
-                    <a class="waves-attach" data-toggle="collapse" href="#ui_menu_me">我的</a>
+                    <a class="waves-attach" data-toggle="collapse" href="#ui_menu_me">アカウント</a>
                     <ul class="menu-collapse collapse in" id="ui_menu_me">
                         <li>
-                            <a href="/user"><i class="icon icon-lg">account_balance_wallet</i>&nbsp;用户中心</a>
+                            <a href="/user"><i class="icon icon-lg">account_balance_wallet</i>&nbsp;トップ画面</a>
                         </li>
 
                         <li>
-                            <a href="/user/profile"><i class="icon icon-lg">account_box</i>&nbsp;账户信息</a>
+                            <a href="/user/profile"><i class="icon icon-lg">account_box</i>&nbsp;アカウント情報</a>
                         </li>
 
                         <li>
-                            <a href="/user/edit"><i class="icon icon-lg">sync_problem</i>&nbsp;资料编辑</a>
+                            <a href="/user/edit"><i class="icon icon-lg">sync_problem</i>&nbsp;アカウント設定</a>
                         </li>
 
                         <li>
-                            <a href="/user/trafficlog"><i class="icon icon-lg">hourglass_empty</i>&nbsp;流量记录</a>
+                            <a href="/user/trafficlog"><i class="icon icon-lg">hourglass_empty</i>&nbsp;通信量の使用履歴</a>
                         </li>
 
                         {if $config['enable_ticket']=='true'}
                             <li>
-                                <a href="/user/ticket"><i class="icon icon-lg">question_answer</i>&nbsp;工单系统</a>
+                                <a href="/user/ticket"><i class="icon icon-lg">question_answer</i>&nbsp;問い合わせ</a>
                             </li>
                         {/if}
-
-                        <li>
-                            <a href="/user/invite"><i class="icon icon-lg">loyalty</i>&nbsp;邀请链接</a>
-                        </li>
                     </ul>
 
 
-                    <a class="waves-attach" data-toggle="collapse" href="#ui_menu_use">使用</a>
+                    <a class="waves-attach" data-toggle="collapse" href="#ui_menu_use">サーバー</a>
                     <ul class="menu-collapse collapse in" id="ui_menu_use">
                         <li>
-                            <a href="/user/node"><i class="icon icon-lg">airplanemode_active</i>&nbsp;节点列表</a>
+                            <a href="/user/node"><i class="icon icon-lg">airplanemode_active</i>&nbsp;サーバー 一覧</a>
                         </li>
 
                         <li>
-                            <a href="/user/relay"><i class="icon icon-lg">compare_arrows</i>&nbsp;中转规则</a>
+                            <a href="/user/relay"><i class="icon icon-lg">compare_arrows</i>&nbsp;サーバー中継設定</a>
                         </li>
 
                         <li>
-                            <a href="/user/lookingglass"><i class="icon icon-lg">visibility</i>&nbsp;延迟检测</a>
+                            <a href="/user/announcement"><i class="icon icon-lg">announcement</i>&nbsp;お知らせ</a>
                         </li>
 
                         <li>
-                            <a href="/user/announcement"><i class="icon icon-lg">announcement</i>&nbsp;网站公告</a>
-                        </li>
-
-                        <li>
-                            <a href="/user/tutorial"><i class="icon icon-lg">start</i>&nbsp;使用教程</a>
+                            <a href="/user/tutorial"><i class="icon icon-lg">start</i>&nbsp;使用方法</a>
                         </li>
                     </ul>
 
-                    <a class="waves-attach" data-toggle="collapse" href="#ui_menu_detect">审计</a>
-                    <ul class="menu-collapse collapse in" id="ui_menu_detect">
-                        <li><a href="/user/detect"><i class="icon icon-lg">account_balance</i>&nbsp;审计规则</a></li>
-                        <li><a href="/user/detect/log"><i class="icon icon-lg">assignment_late</i>&nbsp;审计记录</a></li>
-                    </ul>
-
-                    <a class="waves-attach" data-toggle="collapse" href="#ui_menu_help">商店</a>
+                    <a class="waves-attach" data-toggle="collapse" href="#ui_menu_help">ストア</a>
                     <ul class="menu-collapse collapse in" id="ui_menu_help">
                         <li>
-                            <a href="/user/code"><i class="icon icon-lg">code</i>&nbsp;充值</a>
+                            <a href="/user/code"><i class="icon icon-lg">code</i>&nbsp;残高のチャージ</a>
                         </li>
 
                         <li>
-                            <a href="/user/shop"><i class="icon icon-lg">shop</i>&nbsp;套餐购买</a>
+                            <a href="/user/shop"><i class="icon icon-lg">shop</i>&nbsp;プランの購入</a>
                         </li>
 
-                        <li><a href="/user/bought"><i class="icon icon-lg">shopping_cart</i>&nbsp;购买记录</a></li>
+                        <li><a href="/user/bought"><i class="icon icon-lg">shopping_cart</i>&nbsp;購入履歴</a></li>
 
                         {if $config['enable_donate']=='true'}
                             <li>
@@ -148,14 +134,14 @@
 
                     {if $user->isAdmin()}
                 <li>
-                    <a href="/admin"><i class="icon icon-lg">person_pin</i>&nbsp;管理面板</a>
+                    <a href="/admin"><i class="icon icon-lg">person_pin</i>&nbsp;管理者パネル</a>
                 </li>
                 {/if}
 
                 {if $can_backtoadmin}
                     <li>
                         <a class="padding-right-cd waves-attach" href="/user/backtoadmin"><span
-                                    class="icon icon-lg margin-right">backtoadmin</span>返回管理员身份</a>
+                                    class="icon icon-lg margin-right">backtoadmin</span>管理者アカウントに戻る</a>
                     </li>
                 {/if}
             </ul>
