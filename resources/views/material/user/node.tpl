@@ -43,7 +43,7 @@
 <main class="content">
     <div class="content-header ui-content-header">
         <div class="container">
-            <h1 class="content-heading">节点列表</h1>
+            <h1 class="content-heading">サーバー 一覧</h1>
         </div>
     </div>
 
@@ -75,7 +75,7 @@
                         <div class="nodetitle">
                             <a class="waves-effect waves-button" data-toggle="collapse" href="#cardgroup{$class}"
                                aria-expanded="true" aria-controls="cardgroup{$class}">
-                                <span>{if $class == 0}普通{else}VIP {$node['class']} {/if}用户节点</span><i
+                                <span>{if $class == 0}通常{else}VIP{$node['class']}専用 {/if}サーバー</span><i
                                         class="material-icons">expand_more</i>
                             </a>
                         </div>
@@ -116,7 +116,7 @@
                                 {if $node['class'] > $user->class}
                                     <p class="card-heading" align="center"><b> <i
                                                     class="icon icon-lg">visibility_off</i>
-                                            您当前等级不足以使用该节点，如需升级请<a href="/user/shop">点击这里</a>升级套餐</b></p>
+                                            現在のランクではこのサーバーを利用できません。<a href="/user/shop">ここをクリック</a>してVIPプランを購入してください</b></p>
                                 {else}
 
                                     {$relay_rule = null}
@@ -132,10 +132,10 @@
                                                 {$node['name']}{if $relay_rule != null} - {$relay_rule->dist_node()->name}{/if}
                                             </a>
                                             <div class="nodeload">
-                                                <div class="label label-brand-accent"> ↑点击节点查看配置信息</div>
+                                                <div class="label label-brand-accent">サーバー名をクリックしてサーバーの接続設定を表示する</div>
                                                 <div>
                                                     <span class="node-icon"><i class="icon icon-lg">cloud</i></span>
-                                                    <span class="node-load">负载：<code>{if $node['latest_load'] == -1}N/A{else}{$node['latest_load']}%{/if}</code></span>
+                                                    <span class="node-load">負荷率：<code>{if $node['latest_load'] == -1}N/A{else}{$node['latest_load']}%{/if}</code></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -168,7 +168,7 @@
                                                 <a href="javascript:void(0);"
                                                    onClick="urlChange('{$node['id']}',{$single_muport['server']->server},{if $relay_rule != null}{$relay_rule->id}{else}0{/if})">{$node['name']}
                                                     {if $relay_rule != null} - {$relay_rule->dist_node()->name}{/if} -
-                                                    单端口 Shadowsocks - {$single_muport['server']->server} 端口
+                                                    単一ポート - {$single_muport['server']->server}
                                                 </a>
                                             </div>
                                         {/foreach}
@@ -198,8 +198,8 @@
 
                                         {if $node['class']!=$class}
                                             {$class=$node['class']}
-                                            <p class="card-heading">{if $class == 0}普通{else}VIP {$node['class']} {/if}
-                                                用户节点</p>
+                                            <p class="card-heading">{if $class == 0}通常{else}VIP{$node['class']}専用 {/if}
+                                                サーバー</p>
                                         {/if}
                                         <div class="tile tile-collapse">
                                             <div data-toggle="tile" data-target="#heading{$node['id']}">
@@ -224,7 +224,7 @@
                                                                         class="node-alive">{if $node['online_user'] == -1}N/A{else}{$node['online_user']}{/if}</span></b></strong>
                                                         | <span class="node-icon">
                                                             <i class="icon icon-lg">cloud</i></span>
-                                                        <span class="node-load">负载：{if $node['latest_load'] == -1}N/A{else}{$node['latest_load']}%{/if}</span>
+                                                        <span class="node-load">負荷率：{if $node['latest_load'] == -1}N/A{else}{$node['latest_load']}%{/if}</span>
                                                         | <span class="node-icon">
                                                             <i class="icon icon-lg">import_export</i></span>
                                                         <span class="node-mothed">{$node['bandwidth']}</span>
@@ -252,8 +252,8 @@
                                                                 <div class="card-inner">
                                                                     <p class="card-heading" align="center"><b> <i
                                                                                     class="icon icon-lg">visibility_off</i>
-                                                                            您当前等级不足以使用该节点，如需升级请<a
-                                                                                    href="/user/shop">点击这里</a>升级套餐</b>
+                                                                            現在のランクではこのサーバーを利用できません。<a
+                                                                                    href="/user/shop">ここをクリック</a>してVIPプランを購入してください</b>
                                                                     </p>
                                                                 </div>
                                                             </div>
@@ -274,7 +274,7 @@
                                                                             <a href="javascript:void(0);"
                                                                                onClick="urlChange('{$node['id']}',0,{if $relay_rule != null}{$relay_rule->id}{else}0{/if})">{$node['name']}
                                                                                 {if $relay_rule != null} - {$relay_rule->dist_node()->name}{/if}</a>
-                                                                            <span class="label label-brand-accent">←点击节点查看配置信息</span>
+                                                                            <span class="label label-brand-accent">サーバー名をクリックしてサーバーの接続設定を表示する</span>
                                                                         </p>
                                                                     {elseif $node['sort'] == 11|| $node['sort']==12}
                                                                         {displayNodeLinkV2 node=$node}
@@ -305,10 +305,9 @@
                                                                                 <a href="javascript:void(0);"
                                                                                    onClick="urlChange('{$node['id']}',{$single_muport['server']->server},{if $relay_rule != null}{$relay_rule->id}{else}0{/if})">{$node['name']}
                                                                                     {if $relay_rule != null} - {$relay_rule->dist_node()->name}{/if}
-                                                                                    - 单端口 Shadowsocks -
-                                                                                    {$single_muport['server']->server}
-                                                                                    端口</a><span
-                                                                                        class="label label-brand-accent">←点击节点查看配置信息</span>
+                                                                                    - 単一ポート
+                                                                                    {$single_muport['server']->server}</a><span
+                                                                                        class="label label-brand-accent">サーバー名をクリックしてサーバーの接続設定を表示する</span>
                                                                             </p>
                                                                         {/foreach}
                                                                     {/if}
@@ -403,7 +402,7 @@
     });
     $(".copy-text").click(function () {
         $("#result").modal();
-        $$.getElementById('msg').innerHTML = '已复制，请进入软件添加。';
+        $$.getElementById('msg').innerHTML = 'コピーしました。対応するクライアントに入力してください。';
     });
 
     {literal}

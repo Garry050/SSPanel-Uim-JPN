@@ -91,24 +91,14 @@
                             </li>
                         {/if}
 
-                        <li>
-                            <a href="/user/invite"><i class="icon icon-lg">loyalty</i>&nbsp;招待する</a>
-                        </li>
-                    </ul>
-
-
                     <a class="waves-attach" data-toggle="collapse" href="#ui_menu_use">サーバー</a>
                     <ul class="menu-collapse collapse in" id="ui_menu_use">
                         <li>
-                            <a href="/user/node"><i class="icon icon-lg">airplanemode_active</i>&nbsp;サーバー一覧</a>
+                            <a href="/user/node"><i class="icon icon-lg">airplanemode_active</i>&nbsp;サーバー　一覧</a>
                         </li>
 
                         <li>
                             <a href="/user/relay"><i class="icon icon-lg">compare_arrows</i>&nbsp;サーバー中継設定</a>
-                        </li>
-
-                        <li>
-                            <a href="/user/lookingglass"><i class="icon icon-lg">visibility</i>&nbsp;Ping確認</a>
                         </li>
 
                         <li>
