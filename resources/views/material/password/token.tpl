@@ -8,39 +8,39 @@
         <div class="auth-main auth-row auth-col-one">
             <div class="auth-top auth-row">
                 <a class="boardtop-left" href="/">
-                    <div>首 页</div>
+                    <div>トップ</div>
                 </a>
                 <div class="auth-logo">
                     <img src="/images/authlogo.jpg">
                 </div>
                 <a href="/auth/login" class="boardtop-right">
-                    <div>登 录</div>
+                    <div>ログイン</div>
                 </a>
             </div>
             <div class="auth-row">
                 <div class="form-group-label auth-row row-login">
-                    <label class="floating-label" for="password">密码</label>
+                    <label class="floating-label" for="password">新しいパスワード</label>
                     <input class="form-control maxwidth-auth" id="password" type="password">
                 </div>
             </div>
             <div class="auth-row">
                 <div class="form-group-label auth-row row-login">
-                    <label class="floating-label" for="repasswd">重复密码</label>
+                    <label class="floating-label" for="repasswd">新しいパスワードの確認</label>
                     <input class="form-control maxwidth-auth" id="repasswd" type="password">
                 </div>
             </div>
 
             <div class="btn-auth auth-row">
-                <button id="reset" type="submit" class="btn btn-block btn-brand waves-attach waves-light">重置密码</button>
+                <button id="reset" type="submit" class="btn btn-block btn-brand waves-attach waves-light">パスワードを設定</button>
             </div>
             <div class="auth-help auth-row">
                 <div class="auth-help-table auth-row auth-reset">
-                    <a href="/auth/register">甚至想要重新注册</a>
+                    <a href="/auth/register">再登録する</a>
                 </div>
             </div>
             <div class="auth-bottom auth-row auth-reset">
                 <div class="tgauth">
-                    <p>请妥善保管好自己的登录密码</p>
+                    <p>パスワードは必ず自身で管理してください</p>
                 </div>
             </div>
         </div>
@@ -87,7 +87,7 @@
                 error: (jqXHR) => {
                     $("#msg-error").hide(10);
                     $("#msg-error").show(100);
-                    $$.getElementById('msg-error-p').innerHTML = `发生错误：${
+                    $$.getElementById('msg-error-p').innerHTML = `エラーコード：${
                             jqXHR.status
                             }`;
                     // 在控制台输出错误信息
